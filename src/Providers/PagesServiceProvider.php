@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Velor\Pages\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Services\CmsRouting\Contracts\CmsRouteRegistrarInterface;
 
 class PagesServiceProvider extends ServiceProvider
 {
@@ -13,8 +14,10 @@ class PagesServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__ . '/../../config/velor-pages.php', 'velor-pages');
     }
 
-    public function boot(): void
+    public function boot(CmsRouteRegistrarInterface $cmsRouteRegistrar): void
     {
+        $cmsRouteRegistrar->loadAuthenticated(__DIR__ . '/../../routes/cms.php');
+
         $this->loadTranslationsFrom(__DIR__ . '/../../lang', 'velor-pages');
 
         $this->publishes([

@@ -53,6 +53,12 @@ config/velor-pages.php
 tests
 ```
 
+## Routes
+
+CMS routes live in `routes/cms.php`. The service provider loads that file
+through Velor CMS' route registrar, so this package does not define the global
+`cms` prefix or CMS middleware itself.
+
 ## Publishing
 
 The package should remain in `vendor` by default. Publish only project-owned
