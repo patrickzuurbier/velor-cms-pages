@@ -8,6 +8,29 @@ migrations, and tests.
 This package is currently a skeleton only. The runtime Page and Paragraph
 implementation still lives in the main application.
 
+## Local Development
+
+The host application can load this package through a Composer path repository:
+
+```json
+{
+    "type": "path",
+    "url": "packages/velor/pages",
+    "options": {
+        "symlink": true
+    }
+}
+```
+
+Install or update it from inside the app container:
+
+```bash
+docker compose exec app composer update velor/pages --with-dependencies
+```
+
+With `symlink` enabled, edits in this directory are used by the host app without
+copying files into `vendor`.
+
 ## Intended Contents
 
 ```text
