@@ -65,6 +65,12 @@ The package should register sidebar entries through Velor CMS'
 `SidebarItemRegistryInterface`. Sidebar rendering checks the registered model's
 `viewAny` ability before showing an item.
 
+## Policies
+
+The package should register model policies through Velor CMS'
+`PolicyRegistryInterface`. Registered policies are also exposed to role
+privileges by default.
+
 ## Publishing
 
 The package should remain in `vendor` by default. Publish only project-owned
