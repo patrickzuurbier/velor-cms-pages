@@ -1,12 +1,14 @@
 # Velor Pages
 
-Pages is a future first-party resource plugin for Velor CMS. It will own the
-page and paragraph vertical slice once Velor CMS has package extension points
-for resources, routes, menu items, policies, privileges, config, translations,
-migrations, and tests.
+Pages is a first-party resource plugin proving ground for Velor CMS. It will
+own the page and paragraph vertical slice once Velor CMS has package extension
+points for resources, routes, menu items, policies, privileges, config,
+translations, migrations, and tests.
 
-This package is currently a skeleton only. The runtime Page and Paragraph
-implementation still lives in the main application.
+This package currently owns Page and Paragraph resource translations, resource
+registration, policy registration, and CMS route loading. The runtime Page and
+Paragraph classes still live in the main application until the final namespace
+extraction.
 
 ## Local Development
 
@@ -59,17 +61,24 @@ CMS routes live in `routes/cms.php`. The service provider loads that file
 through Velor CMS' route registrar, so this package does not define the global
 `cms` prefix or CMS middleware itself.
 
+## Resources
+
+The service provider registers the current host application Page and Paragraph
+resource classes through Velor CMS' `ResourceRegistryInterface`. This is a
+temporary bridge while the runtime classes still live in the host application.
+
 ## Sidebar
 
 The package should register sidebar entries through Velor CMS'
-`SidebarItemRegistryInterface`. Sidebar rendering checks the registered model's
-`viewAny` ability before showing an item.
+`SidebarItemRegistryInterface` once package sidebar ordering is solved. For
+now, the host application still owns final sidebar composition so menu order
+stays explicit.
 
 ## Policies
 
-The package should register model policies through Velor CMS'
-`PolicyRegistryInterface`. Registered policies are also exposed to role
-privileges by default.
+The service provider registers the current host application Page and Paragraph
+policies through Velor CMS' `PolicyRegistryInterface`. Registered policies are
+also exposed to role privileges by default.
 
 ## Publishing
 

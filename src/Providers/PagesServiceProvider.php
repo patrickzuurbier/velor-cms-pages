@@ -4,8 +4,16 @@ declare(strict_types=1);
 
 namespace Velor\Pages\Providers;
 
+use App\Models\Page;
+use App\Models\Paragraph;
+use App\Policies\PagePolicy;
+use App\Policies\ParagraphPolicy;
+use App\Resources\PageResource;
+use App\Resources\ParagraphResource;
 use Illuminate\Support\ServiceProvider;
+use App\Services\Resources\Contracts\ResourceRegistryInterface;
 use App\Services\CmsRouting\Contracts\CmsRouteRegistrarInterface;
+use App\Services\Authorization\Contracts\PolicyRegistryInterface;
 
 class PagesServiceProvider extends ServiceProvider
 {
@@ -14,9 +22,18 @@ class PagesServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__ . '/../../config/velor-pages.php', 'velor-pages');
     }
 
-    public function boot(CmsRouteRegistrarInterface $cmsRouteRegistrar): void
-    {
-        $cmsRouteRegistrar->loadAuthenticated(__DIR__ . '/../../routes/cms.php');
+    public function boot(
+        CmsRouteRegistrarInterface $cmsRoutes,
+        ResourceRegistryInterface $resources,
+        PolicyRegistryInterface $policies,
+    ): void {
+        $resources->register(PageResource::class);
+        $resources->register(ParagraphResource::class);
+
+        $policies->register(Page::class, PagePolicy::class);
+        $policies->register(Paragraph::class, ParagraphPolicy::class);
+
+        $cmsRoutes->loadAuthenticated(__DIR__ . '/../../routes/cms.php');
 
         $this->loadTranslationsFrom(__DIR__ . '/../../lang', 'velor-pages');
 
