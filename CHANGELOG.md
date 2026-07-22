@@ -15,3 +15,6 @@ This package follows semantic versioning: `MAJOR.MINOR.PATCH`.
   resources, policies, translations, sidebar registration, and CMS routes.
 - Config override maps for project-owned resource and policy classes.
 - MIT license file for the package repository.
+
+[Unreleased]: https://github.com/patrickzuurbier/velor-cms-pages/compare/1.0.0...HEAD
+[1.0.0]: https://github.com/patrickzuurbier/velor-cms-pages/releases/tag/1.0.0
