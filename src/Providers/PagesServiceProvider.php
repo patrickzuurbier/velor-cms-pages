@@ -6,6 +6,7 @@ namespace Velor\Pages\Providers;
 
 use Velor\Pages\Models\Page;
 use Velor\Pages\Models\Paragraph;
+use App\Data\Cms\SidebarItemData;
 use Illuminate\Support\ServiceProvider;
 use Velor\Pages\Policies\PagePolicy;
 use Velor\Pages\Resources\PageResource;
@@ -14,6 +15,7 @@ use Velor\Pages\Resources\ParagraphResource;
 use App\Services\Resources\Contracts\ResourceRegistryInterface;
 use App\Services\CmsRouting\Contracts\CmsRouteRegistrarInterface;
 use App\Services\Authorization\Contracts\PolicyRegistryInterface;
+use App\Services\CmsNavigation\Contracts\SidebarItemRegistryInterface;
 
 class PagesServiceProvider extends ServiceProvider
 {
@@ -26,12 +28,18 @@ class PagesServiceProvider extends ServiceProvider
         CmsRouteRegistrarInterface $cmsRoutes,
         ResourceRegistryInterface $resources,
         PolicyRegistryInterface $policies,
+        SidebarItemRegistryInterface $sidebarItems,
     ): void {
         $resources->register(PageResource::class);
         $resources->register(ParagraphResource::class);
 
         $policies->register(Page::class, PagePolicy::class);
         $policies->register(Paragraph::class, ParagraphPolicy::class);
+
+        $sidebarItems->registerBefore(
+            'images.index',
+            new SidebarItemData(Page::class, 'pages.index', 'velor-pages::resources.pages.plural', 'bi-files'),
+        );
 
         $cmsRoutes->loadAuthenticated(__DIR__ . '/../../routes/cms.php');
 

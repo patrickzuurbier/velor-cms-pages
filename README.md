@@ -85,10 +85,10 @@ through Velor CMS' `ResourceRegistryInterface`.
 
 ## Sidebar
 
-The package should register sidebar entries through Velor CMS'
-`SidebarItemRegistryInterface` once package sidebar ordering is solved. For
-now, the host application still owns final sidebar composition so menu order
-stays explicit.
+The package registers its sidebar item through Velor CMS'
+`SidebarItemRegistryInterface`. It anchors the Pages item before the Images
+route, so the package owns its menu entry while the host menu remains
+predictable.
 
 ## Policies
 
