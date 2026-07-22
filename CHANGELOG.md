@@ -6,6 +6,11 @@ This package follows semantic versioning: `MAJOR.MINOR.PATCH`.
 
 ## [Unreleased]
 
+### Changed
+
+- Documented the optional rich text image picker integration when the Velor CMS
+  Images package is installed.
+
 ## [1.0.2] - 2026-07-22
 
 ### Changed

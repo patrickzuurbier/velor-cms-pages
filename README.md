@@ -155,6 +155,11 @@ The Paragraph resource uses Velor CMS' core `RichText` field. Rich text image
 insertion is optional and should be provided by an images/media package through
 Velor CMS extension points. This package must not require an images package.
 
+When `patrickzuurbier/velor-cms-images` is installed, its `images.picker` route
+is detected by Velor CMS core and the `RichText` image button opens the Velor
+CMS image picker. Without that route, Quill keeps its original URL-based image
+insertion behaviour.
+
 ## Sidebar
 
 The package registers its sidebar item through Velor CMS'
