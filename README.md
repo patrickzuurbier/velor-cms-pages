@@ -83,6 +83,15 @@ validation remains defined by the package resources.
 The service provider registers the package Page and Paragraph resource classes
 through Velor CMS' `ResourceRegistryInterface`.
 
+Published config can override the resource classes when a project needs custom
+resources:
+
+```php
+'resources' => [
+    'page' => App\Resources\PageResource::class,
+],
+```
+
 ## Sidebar
 
 The package registers its sidebar item through Velor CMS'
@@ -95,6 +104,14 @@ predictable.
 The service provider registers the package Page and Paragraph policies through
 Velor CMS' `PolicyRegistryInterface`. Registered policies are also exposed to
 role privileges by default.
+
+Published config can override policy classes per model:
+
+```php
+'policies' => [
+    Velor\Pages\Models\Page::class => App\Policies\PagePolicy::class,
+],
+```
 
 ## Publishing
 
