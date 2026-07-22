@@ -1,9 +1,9 @@
-# Velor Pages
+# Velor CMS Pages
 
-Pages is a first-party resource plugin proving ground for Velor CMS. It owns
-the page and paragraph vertical slice and uses Velor CMS extension points for
-resources, routes, menu items, policies, privileges, config, translations,
-migrations, and tests.
+Pages is a first-party resource plugin for Velor CMS. It owns the page and
+paragraph vertical slice and uses Velor CMS extension points for resources,
+routes, menu items, policies, privileges, config, translations, migrations, and
+tests.
 
 This package owns Page and Paragraph models, factories, migrations, seeders,
 controllers, form requests, resource classes, policies, resource translations,
@@ -12,7 +12,8 @@ routes.
 
 ## Local Development
 
-The host application can load this package through a Composer path repository:
+The Velor CMS repository can load this package through a Composer path
+repository:
 
 ```json
 {
@@ -53,7 +54,7 @@ The package service provider is auto-discovered by Laravel. When enabled, it
 registers resources, policies, sidebar items, CMS routes, translations, and
 migrations.
 
-## Intended Contents
+## Package Contents
 
 ```text
 src/Models/Page.php
@@ -158,17 +159,16 @@ package.
 
 ## Testing
 
-While this package is developed inside the Velor CMS repository, package
-integration is covered by the host application test suite:
+Package integration is covered by the Velor CMS host application test suite:
 
 ```bash
 make test
 ```
 
-The package-level `tests` namespace is reserved for the future standalone
-package repository. Once extracted, tests should verify provider boot,
-resource/policy/sidebar registration, routes, translations, factories, and
-migrations against a consuming Velor CMS test application.
+The package-level `tests` namespace is reserved for standalone package tests.
+Those tests should verify provider boot, resource/policy/sidebar registration,
+routes, translations, factories, and migrations against a consuming Velor CMS
+test application.
 
 ## Uninstalling
 
@@ -187,11 +187,11 @@ project data and are not deleted automatically by Composer.
 
 This package is open-sourced software licensed under the MIT license.
 
-## Extraction Notes
+## Development Notes
 
-Pages and paragraphs should be extracted together. The package owns their
-models, factories, migrations, seeders, relationship, tabs, ordering,
-translated fields, slugs, anchors, and rich text configuration.
+Pages and paragraphs belong together. The package owns their models, factories,
+migrations, seeders, relationship, tabs, ordering, translated fields, slugs,
+anchors, and rich text configuration.
 
 Velor CMS core must not contain page-specific route, menu, or field logic after
-the extraction.
+this package is installed.

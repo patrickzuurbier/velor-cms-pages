@@ -1,7 +1,6 @@
 # Velor Pages Tests
 
-While this package is developed inside the Velor CMS repository, integration
-tests live in the host test suite under `tests/Integration/Packages/VelorPages`.
+Package integration is currently covered by the Velor CMS host test suite.
 
 When this package moves to its own repository, package tests should cover:
 

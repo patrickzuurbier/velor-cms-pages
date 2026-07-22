@@ -6,6 +6,8 @@ This package follows semantic versioning: `MAJOR.MINOR.PATCH`.
 
 ## [Unreleased]
 
+## [1.0.0] - 2026-07-22
+
 ### Added
 
 - Initial local package extraction for the Page and Paragraph resource slice.
