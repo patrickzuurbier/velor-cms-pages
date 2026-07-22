@@ -109,11 +109,10 @@ php artisan vendor:publish --tag=velor-pages-lang
 
 Optional override tags can be added later:
 
-```bash
-php artisan vendor:publish --tag=velor-pages-resources
-php artisan vendor:publish --tag=velor-pages-controllers
-php artisan vendor:publish --tag=velor-pages-policies
-```
+Resource, controller, policy, and model customization should use publishable
+stubs with host namespaces plus package config override maps. Do not publish raw
+package PHP classes into `app/`, because their namespaces still belong to the
+package.
 
 ## Extraction Notes
 
