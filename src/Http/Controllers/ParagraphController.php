@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
-use App\Http\Requests\ParagraphRequest;
+use Velor\Pages\Http\Requests\ParagraphRequest;
 use App\Services\Resources\Contracts\ResourceIndexQueryInterface;
 
 class ParagraphController extends Controller

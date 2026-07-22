@@ -6,10 +6,10 @@ namespace Velor\Pages\Http\Controllers;
 
 use App\Models\Page;
 use Illuminate\Http\Request;
-use App\Http\Requests\PageRequest;
 use Illuminate\Contracts\View\View;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
+use Velor\Pages\Http\Requests\PageRequest;
 use App\Services\Resources\Contracts\ResourceIndexQueryInterface;
 
 class PageController extends Controller
