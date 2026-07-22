@@ -1,14 +1,14 @@
 # Velor Pages
 
-Pages is a first-party resource plugin proving ground for Velor CMS. It will
-own the page and paragraph vertical slice once Velor CMS has package extension
-points for resources, routes, menu items, policies, privileges, config,
-translations, migrations, and tests.
+Pages is a first-party resource plugin proving ground for Velor CMS. It owns
+the page and paragraph vertical slice and uses Velor CMS extension points for
+resources, routes, menu items, policies, privileges, config, translations,
+migrations, and tests.
 
-This package currently owns Page and Paragraph models, factories, controllers,
-form requests, resource classes, policies, resource translations, resource
-registration, policy registration, and CMS routes. Database migrations and
-seeders still live in the host application until migration ownership is ready.
+This package owns Page and Paragraph models, factories, migrations, seeders,
+controllers, form requests, resource classes, policies, resource translations,
+resource registration, policy registration, sidebar registration, and CMS
+routes.
 
 ## Local Development
 
@@ -32,6 +32,26 @@ docker compose exec app composer update velor/pages --with-dependencies
 
 With `symlink` enabled, edits in this directory are used by the host app without
 copying files into `vendor`.
+
+## Installation
+
+Install the package in a Velor CMS application:
+
+```bash
+composer require velor/pages
+```
+
+For local path development inside the Velor CMS repository, keep the path
+repository in the host `composer.json` and update the package from the app
+container:
+
+```bash
+docker compose exec app composer update velor/pages --with-dependencies
+```
+
+The package service provider is auto-discovered by Laravel. When enabled, it
+registers resources, policies, sidebar items, CMS routes, translations, and
+migrations.
 
 ## Intended Contents
 
@@ -92,6 +112,10 @@ resources:
 ],
 ```
 
+The Paragraph resource uses Velor CMS' core `RichText` field. Rich text image
+insertion is optional and should be provided by an images/media package through
+Velor CMS extension points. This package must not require an images package.
+
 ## Sidebar
 
 The package registers its sidebar item through Velor CMS'
@@ -116,11 +140,12 @@ Published config can override policy classes per model:
 ## Publishing
 
 The package should remain in `vendor` by default. Publish only project-owned
-files or explicit override classes:
+files:
 
 ```bash
 php artisan vendor:publish --tag=velor-pages-config
 php artisan vendor:publish --tag=velor-pages-migrations
+php artisan vendor:publish --tag=velor-pages-seeders
 php artisan vendor:publish --tag=velor-pages-lang
 ```
 
@@ -130,6 +155,33 @@ Resource, controller, policy, and model customization should use publishable
 stubs with host namespaces plus package config override maps. Do not publish raw
 package PHP classes into `app/`, because their namespaces still belong to the
 package.
+
+## Testing
+
+While this package is developed inside the Velor CMS repository, package
+integration is covered by the host application test suite:
+
+```bash
+make test
+```
+
+The package-level `tests` namespace is reserved for the future standalone
+package repository. Once extracted, tests should verify provider boot,
+resource/policy/sidebar registration, routes, translations, factories, and
+migrations against a consuming Velor CMS test application.
+
+## Uninstalling
+
+The package can be removed from a consuming application with Composer:
+
+```bash
+composer remove velor/pages
+```
+
+Velor CMS core should continue to boot without this package. Package-owned CMS
+routes, resources, policies, sidebar items, translations, and loaded migrations
+disappear with the package. Existing database tables and published files are
+project data and are not deleted automatically by Composer.
 
 ## Extraction Notes
 
