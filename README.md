@@ -183,6 +183,10 @@ routes, resources, policies, sidebar items, translations, and loaded migrations
 disappear with the package. Existing database tables and published files are
 project data and are not deleted automatically by Composer.
 
+## License
+
+This package is open-sourced software licensed under the MIT license.
+
 ## Extraction Notes
 
 Pages and paragraphs should be extracted together. The package owns their

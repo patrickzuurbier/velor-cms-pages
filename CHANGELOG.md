@@ -12,3 +12,4 @@ This package follows semantic versioning: `MAJOR.MINOR.PATCH`.
 - Package-owned models, factories, migrations, seeders, controllers, requests,
   resources, policies, translations, sidebar registration, and CMS routes.
 - Config override maps for project-owned resource and policy classes.
+- MIT license file for the package repository.
