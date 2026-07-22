@@ -10,6 +10,24 @@ controllers, form requests, resource classes, policies, resource translations,
 resource registration, policy registration, sidebar registration, and CMS
 routes.
 
+## Contents
+
+- [Local Development](#local-development)
+- [Installation](#installation)
+- [Package Contents](#package-contents)
+- [Routes](#routes)
+- [Models And Factories](#models-and-factories)
+- [Controllers](#controllers)
+- [Form Requests](#form-requests)
+- [Resources](#resources)
+- [Sidebar](#sidebar)
+- [Policies](#policies)
+- [Publishing](#publishing)
+- [Testing](#testing)
+- [Uninstalling](#uninstalling)
+- [License](#license)
+- [Development Notes](#development-notes)
+
 ## Local Development
 
 The Velor CMS repository can temporarily load this package through a Composer
