@@ -3,8 +3,8 @@
 declare(strict_types=1);
 
 use Illuminate\Routing\Router;
-use App\Http\Controllers\Cms\PageController;
-use App\Http\Controllers\Cms\ParagraphController;
+use Velor\Pages\Http\Controllers\PageController;
+use Velor\Pages\Http\Controllers\ParagraphController;
 
 /**
  * @var Router $router

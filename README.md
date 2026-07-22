@@ -5,11 +5,10 @@ own the page and paragraph vertical slice once Velor CMS has package extension
 points for resources, routes, menu items, policies, privileges, config,
 translations, migrations, and tests.
 
-This package currently owns Page and Paragraph resource classes, policies,
-resource translations, resource registration, policy registration, and CMS
-routes. The resources and policies still point to host application models, and
-the routes still point to host application controllers until the final namespace
-extraction.
+This package currently owns Page and Paragraph controllers, resource classes,
+policies, resource translations, resource registration, policy registration,
+and CMS routes. The controllers, resources, and policies still point to host
+application models and requests until the final namespace extraction.
 
 ## Local Development
 
@@ -62,6 +61,12 @@ CMS routes live in `routes/cms.php`. The service provider loads that file
 through Velor CMS' route registrar, so this package does not define the global
 `cms` prefix or CMS middleware itself. The route names and URLs remain the same
 as the original host application routes.
+
+## Controllers
+
+The package controllers render the generic Velor CMS index, show, and form
+views. They still use host application models and form requests until those
+classes are extracted into the package.
 
 ## Resources
 
