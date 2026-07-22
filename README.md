@@ -27,7 +27,7 @@ The host application can load this package through a Composer path repository:
 Install or update it from inside the app container:
 
 ```bash
-docker compose exec app composer update velor/pages --with-dependencies
+docker compose exec app composer update patrickzuurbier/velor-cms-pages --with-dependencies
 ```
 
 With `symlink` enabled, edits in this directory are used by the host app without
@@ -38,7 +38,7 @@ copying files into `vendor`.
 Install the package in a Velor CMS application:
 
 ```bash
-composer require velor/pages
+composer require patrickzuurbier/velor-cms-pages
 ```
 
 For local path development inside the Velor CMS repository, keep the path
@@ -46,7 +46,7 @@ repository in the host `composer.json` and update the package from the app
 container:
 
 ```bash
-docker compose exec app composer update velor/pages --with-dependencies
+docker compose exec app composer update patrickzuurbier/velor-cms-pages --with-dependencies
 ```
 
 The package service provider is auto-discovered by Laravel. When enabled, it
@@ -175,7 +175,7 @@ migrations against a consuming Velor CMS test application.
 The package can be removed from a consuming application with Composer:
 
 ```bash
-composer remove velor/pages
+composer remove patrickzuurbier/velor-cms-pages
 ```
 
 Velor CMS core should continue to boot without this package. Package-owned CMS

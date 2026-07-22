@@ -1,6 +1,6 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
-    "name": "velor/pages",
+    "name": "patrickzuurbier/velor-cms-pages",
     "description": "Pages and paragraphs resource plugin for Velor CMS.",
     "type": "library",
     "license": "MIT",
