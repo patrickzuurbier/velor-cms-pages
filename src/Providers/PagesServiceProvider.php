@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Velor\Pages\Providers;
 
-use App\Models\Page;
-use App\Models\Paragraph;
+use Velor\Pages\Models\Page;
+use Velor\Pages\Models\Paragraph;
 use Illuminate\Support\ServiceProvider;
 use Velor\Pages\Policies\PagePolicy;
 use Velor\Pages\Resources\PageResource;

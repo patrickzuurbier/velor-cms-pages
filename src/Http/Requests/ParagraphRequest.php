@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Velor\Pages\Http\Requests;
 
-use App\Models\Paragraph;
+use Velor\Pages\Models\Paragraph;
 use App\Http\Requests\AbstractFormRequest;
 use Illuminate\Contracts\Validation\ValidationRule;
 use App\Contracts\Factories\Validation\ResourceValidationAttributesFactoryInterface;

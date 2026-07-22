@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Velor\Pages\Resources;
 
-use App\Models\Paragraph;
+use Velor\Pages\Models\Paragraph;
 use App\Resources\AbstractResource;
 use App\Resources\Fields\Checkbox;
 use App\Resources\Fields\Field;

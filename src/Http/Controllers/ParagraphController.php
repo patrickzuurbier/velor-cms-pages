@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Velor\Pages\Http\Controllers;
 
-use App\Models\Page;
-use App\Models\Paragraph;
+use Velor\Pages\Models\Page;
+use Velor\Pages\Models\Paragraph;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 use App\Http\Controllers\Controller;

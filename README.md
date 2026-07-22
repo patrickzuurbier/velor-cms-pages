@@ -5,11 +5,10 @@ own the page and paragraph vertical slice once Velor CMS has package extension
 points for resources, routes, menu items, policies, privileges, config,
 translations, migrations, and tests.
 
-This package currently owns Page and Paragraph controllers, form requests,
-resource classes, policies, resource translations, resource registration,
-policy registration, and CMS routes. The controllers, requests, resources, and
-policies still point to host application models until the final namespace
-extraction.
+This package currently owns Page and Paragraph models, factories, controllers,
+form requests, resource classes, policies, resource translations, resource
+registration, policy registration, and CMS routes. Database migrations and
+seeders still live in the host application until migration ownership is ready.
 
 ## Local Development
 
@@ -63,10 +62,16 @@ through Velor CMS' route registrar, so this package does not define the global
 `cms` prefix or CMS middleware itself. The route names and URLs remain the same
 as the original host application routes.
 
+## Models And Factories
+
+The package models extend Velor CMS' `AbstractModel` and explicitly resolve
+their package factories, so `Page::factory()` and `Paragraph::factory()` keep
+working while the package is developed through a Composer path repository.
+
 ## Controllers
 
 The package controllers render the generic Velor CMS index, show, and form
-views. They still use host application models until model extraction is ready.
+views.
 
 ## Form Requests
 
@@ -76,8 +81,7 @@ validation remains defined by the package resources.
 ## Resources
 
 The service provider registers the package Page and Paragraph resource classes
-through Velor CMS' `ResourceRegistryInterface`. This is still a bridge step: the
-resource classes use host application models until model extraction is ready.
+through Velor CMS' `ResourceRegistryInterface`.
 
 ## Sidebar
 
@@ -89,8 +93,7 @@ stays explicit.
 ## Policies
 
 The service provider registers the package Page and Paragraph policies through
-Velor CMS' `PolicyRegistryInterface`. The policies still use host application
-models until model extraction is ready. Registered policies are also exposed to
+Velor CMS' `PolicyRegistryInterface`. Registered policies are also exposed to
 role privileges by default.
 
 ## Publishing

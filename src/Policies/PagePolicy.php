@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Velor\Pages\Policies;
 
-use App\Models\Page;
+use Velor\Pages\Models\Page;
 use App\Models\User;
 use App\Policies\Concerns\UsesRolePermissions;
 

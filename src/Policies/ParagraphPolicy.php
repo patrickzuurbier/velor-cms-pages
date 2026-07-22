@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Velor\Pages\Policies;
 
 use App\Models\User;
-use App\Models\Paragraph;
+use Velor\Pages\Models\Paragraph;
 use App\Policies\Concerns\UsesRolePermissions;
 
 class ParagraphPolicy
