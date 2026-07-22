@@ -118,8 +118,8 @@ php artisan vendor:publish --tag=velor-pages-policies
 ## Extraction Notes
 
 Pages and paragraphs should be extracted together. The package owns their
-relationship, tabs, ordering, translated fields, slugs, anchors, and rich text
-configuration.
+models, factories, migrations, seeders, relationship, tabs, ordering,
+translated fields, slugs, anchors, and rich text configuration.
 
 Velor CMS core must not contain page-specific route, menu, or field logic after
 the extraction.

@@ -36,6 +36,7 @@ class PagesServiceProvider extends ServiceProvider
         $cmsRoutes->loadAuthenticated(__DIR__ . '/../../routes/cms.php');
 
         $this->loadTranslationsFrom(__DIR__ . '/../../lang', 'velor-pages');
+        $this->loadMigrationsFrom(__DIR__ . '/../../database/migrations');
 
         $this->publishes([
             __DIR__ . '/../../config/velor-pages.php' => $this->app->configPath('velor-pages.php'),

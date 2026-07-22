@@ -10,7 +10,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Velor\\Pages\\": "src/"
+            "Velor\\Pages\\": "src/",
+            "Velor\\Pages\\Database\\Seeders\\": "database/seeders/"
         }
     },
     "autoload-dev": {
