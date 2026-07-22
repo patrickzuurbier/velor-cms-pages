@@ -54,6 +54,32 @@ The package service provider is auto-discovered by Laravel. When enabled, it
 registers resources, policies, sidebar items, CMS routes, translations, and
 migrations.
 
+Publish the package migrations when the application should own them:
+
+```bash
+php artisan vendor:publish --tag=velor-pages-migrations
+```
+
+Then run the database migrations:
+
+```bash
+php artisan migrate
+```
+
+For local development, use the Makefile from the Velor CMS host application:
+
+```bash
+make migrate
+```
+
+Optionally publish and run the package seeders for local data:
+
+```bash
+php artisan vendor:publish --tag=velor-pages-seeders
+php artisan db:seed --class=Velor\Pages\Database\Seeders\PagesTableSeeder
+php artisan db:seed --class=Velor\Pages\Database\Seeders\ParagraphsTableSeeder
+```
+
 ## Package Contents
 
 ```text
