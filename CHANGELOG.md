@@ -6,6 +6,12 @@ This package follows semantic versioning: `MAJOR.MINOR.PATCH`.
 
 ## [Unreleased]
 
+## [1.0.1] - 2026-07-22
+
+### Changed
+
+- Documented package migration and seeder setup for consuming applications.
+
 ## [1.0.0] - 2026-07-22
 
 ### Added
@@ -16,5 +22,6 @@ This package follows semantic versioning: `MAJOR.MINOR.PATCH`.
 - Config override maps for project-owned resource and policy classes.
 - MIT license file for the package repository.
 
-[Unreleased]: https://github.com/patrickzuurbier/velor-cms-pages/compare/1.0.0...HEAD
+[Unreleased]: https://github.com/patrickzuurbier/velor-cms-pages/compare/1.0.1...HEAD
+[1.0.1]: https://github.com/patrickzuurbier/velor-cms-pages/compare/1.0.0...1.0.1
 [1.0.0]: https://github.com/patrickzuurbier/velor-cms-pages/releases/tag/1.0.0
