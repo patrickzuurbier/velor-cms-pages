@@ -5,10 +5,11 @@ own the page and paragraph vertical slice once Velor CMS has package extension
 points for resources, routes, menu items, policies, privileges, config,
 translations, migrations, and tests.
 
-This package currently owns Page and Paragraph resource classes, resource
-translations, resource registration, policy registration, and CMS routes. The
-resources still point to host application models, and the routes still point to
-host application controllers until the final namespace extraction.
+This package currently owns Page and Paragraph resource classes, policies,
+resource translations, resource registration, policy registration, and CMS
+routes. The resources and policies still point to host application models, and
+the routes still point to host application controllers until the final namespace
+extraction.
 
 ## Local Development
 
@@ -77,9 +78,10 @@ stays explicit.
 
 ## Policies
 
-The service provider registers the current host application Page and Paragraph
-policies through Velor CMS' `PolicyRegistryInterface`. Registered policies are
-also exposed to role privileges by default.
+The service provider registers the package Page and Paragraph policies through
+Velor CMS' `PolicyRegistryInterface`. The policies still use host application
+models until model extraction is ready. Registered policies are also exposed to
+role privileges by default.
 
 ## Publishing
 

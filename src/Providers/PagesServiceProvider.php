@@ -6,10 +6,10 @@ namespace Velor\Pages\Providers;
 
 use App\Models\Page;
 use App\Models\Paragraph;
-use App\Policies\PagePolicy;
-use App\Policies\ParagraphPolicy;
 use Illuminate\Support\ServiceProvider;
+use Velor\Pages\Policies\PagePolicy;
 use Velor\Pages\Resources\PageResource;
+use Velor\Pages\Policies\ParagraphPolicy;
 use Velor\Pages\Resources\ParagraphResource;
 use App\Services\Resources\Contracts\ResourceRegistryInterface;
 use App\Services\CmsRouting\Contracts\CmsRouteRegistrarInterface;
