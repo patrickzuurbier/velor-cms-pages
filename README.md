@@ -12,8 +12,8 @@ routes.
 
 ## Local Development
 
-The Velor CMS repository can load this package through a Composer path
-repository:
+The Velor CMS repository can temporarily load this package through a Composer
+path repository during package development:
 
 ```json
 {
@@ -32,22 +32,34 @@ docker compose exec app composer update patrickzuurbier/velor-cms-pages --with-d
 ```
 
 With `symlink` enabled, edits in this directory are used by the host app without
-copying files into `vendor`.
+copying files into `vendor`. Remove the path repository again before testing a
+real install from GitHub.
 
 ## Installation
 
 Install the package in a Velor CMS application:
 
 ```bash
-composer require patrickzuurbier/velor-cms-pages
+composer config repositories.velor-cms-pages vcs https://github.com/patrickzuurbier/velor-cms-pages.git
+composer require patrickzuurbier/velor-cms-pages:^1.0
 ```
 
-For local path development inside the Velor CMS repository, keep the path
-repository in the host `composer.json` and update the package from the app
+For local path development inside the Velor CMS repository, temporarily point
+Composer to the package workspace and update the package from the app
 container:
 
 ```bash
+composer config repositories.velor-cms-pages path packages/velor/pages
 docker compose exec app composer update patrickzuurbier/velor-cms-pages --with-dependencies
+```
+
+With a local path repository, Composer can symlink
+`vendor/patrickzuurbier/velor-cms-pages` to `packages/velor/pages`. Remove the
+local path repository again before testing a real install from GitHub:
+
+```bash
+composer config --unset repositories.velor-cms-pages
+composer config repositories.velor-cms-pages vcs https://github.com/patrickzuurbier/velor-cms-pages.git
 ```
 
 The package service provider is auto-discovered by Laravel. When enabled, it

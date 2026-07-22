@@ -6,6 +6,11 @@ This package follows semantic versioning: `MAJOR.MINOR.PATCH`.
 
 ## [Unreleased]
 
+### Changed
+
+- Clarified package installation documentation for VCS installs, local path
+  development, migrations, and seeders.
+
 ## [1.0.1] - 2026-07-22
 
 ### Changed
