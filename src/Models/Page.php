@@ -88,6 +88,9 @@ class Page extends AbstractModel implements TranslatableInterface
         'meta_keywords',
     ];
 
+    /**
+     * @return Factory<Page>
+     */
     protected static function newFactory(): Factory
     {
         return PageFactory::new();

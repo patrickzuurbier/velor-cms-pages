@@ -81,6 +81,9 @@ class Paragraph extends AbstractModel implements TranslatableInterface
         'page_id',
     ];
 
+    /**
+     * @return Factory<Paragraph>
+     */
     protected static function newFactory(): Factory
     {
         return ParagraphFactory::new();
