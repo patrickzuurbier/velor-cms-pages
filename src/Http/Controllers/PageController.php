@@ -45,7 +45,7 @@ class PageController extends Controller
         $page = Page::create($request->validated());
 
         return redirect()
-            ->route('pages.show', ['page' => $page->id])
+            ->route('pages.show', ['page' => $page->getKey()])
             ->with('status', 'Page created.');
     }
 
@@ -68,7 +68,7 @@ class PageController extends Controller
         $page->update($request->validated());
 
         return redirect()
-            ->route('pages.show', ['page' => $page->id])
+            ->route('pages.show', ['page' => $page->getKey()])
             ->with('status', 'Page updated.');
     }
 

@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Velor\Pages\Models;
 
 use App\Models\AbstractModel;
+use App\Contracts\Models\RowOrderableInterface;
+use App\Concerns\Models\HasRowOrdering;
 use App\Concerns\Models\UsesAudit;
 use Kyslik\ColumnSortable\Sortable;
 use Spatie\Translatable\Translatable;
@@ -21,10 +23,11 @@ use Velor\Pages\Database\Factories\ParagraphFactory;
 /**
  * @mixin \Eloquent
  */
-class Paragraph extends AbstractModel implements TranslatableInterface
+class Paragraph extends AbstractModel implements RowOrderableInterface, TranslatableInterface
 {
     /** @use HasFactory<ParagraphFactory> */
     use HasFactory;
+    use HasRowOrdering;
     use HasUuids;
     use HasTranslations;
     use Sortable;
@@ -51,7 +54,7 @@ class Paragraph extends AbstractModel implements TranslatableInterface
         'intro',
         'content',
         'anchor',
-        'order',
+        'sort_order',
         'created_at',
         'updated_at',
     ];
@@ -66,7 +69,14 @@ class Paragraph extends AbstractModel implements TranslatableInterface
         'content',
         'anchor',
         'is_active',
-        'order',
+        'sort_order',
+        'page_id',
+    ];
+
+    /**
+     * @var array<int, string>
+     */
+    protected array $rowOrderScopeColumns = [
         'page_id',
     ];
 
@@ -77,7 +87,7 @@ class Paragraph extends AbstractModel implements TranslatableInterface
         'content',
         'anchor',
         'is_active',
-        'order',
+        'sort_order',
         'page_id',
     ];
 
@@ -98,7 +108,7 @@ class Paragraph extends AbstractModel implements TranslatableInterface
             'intro'      => Translatable::class,
             'content'    => Translatable::class,
             'anchor'     => Translatable::class,
-            'order'      => 'integer',
+            'sort_order' => 'integer',
             'created_at' => 'datetime',
             'updated_at' => 'datetime',
         ];

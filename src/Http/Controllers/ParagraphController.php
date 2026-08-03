@@ -52,7 +52,7 @@ class ParagraphController extends Controller
         $paragraph = $page->paragraphs()->create($request->validated());
 
         return redirect()
-            ->route('pages.paragraphs.show', ['page' => $page->id, 'paragraph' => $paragraph->id])
+            ->route('pages.paragraphs.show', ['page' => $page->getKey(), 'paragraph' => $paragraph->getKey()])
             ->with('status', 'Paragraph created.');
     }
 
@@ -75,7 +75,7 @@ class ParagraphController extends Controller
         $paragraph->update($request->validated());
 
         return redirect()
-            ->route('pages.paragraphs.show', ['page' => $paragraph->page, 'paragraph' => $paragraph->id])
+            ->route('pages.paragraphs.show', ['page' => $page->getKey(), 'paragraph' => $paragraph->getKey()])
             ->with('status', 'Paragraph updated.');
     }
 
@@ -84,7 +84,7 @@ class ParagraphController extends Controller
         $paragraph->delete();
 
         return redirect()
-            ->route('pages.paragraphs.index', ['page' => $page->id])
+            ->route('pages.paragraphs.index', ['page' => $page->getKey()])
             ->with('status', 'Paragraph deleted.');
     }
 }

@@ -139,6 +139,16 @@ through Velor CMS' route registrar, so this package does not define the global
 `cms` prefix or CMS middleware itself. The route names and URLs remain the same
 as the original host application routes.
 
+Paragraphs use Velor CMS core row ordering:
+
+```text
+POST /cms/resource-row-order/paragraphs
+```
+
+The package marks the Paragraph model as row-orderable and scopes ordering by
+`page_id`, so paragraphs can only be reordered inside the current page. The
+endpoint is protected by the Paragraph policy's `reorder` ability.
+
 ## Models And Factories
 
 The package models extend Velor CMS' `AbstractModel` and explicitly resolve

@@ -18,7 +18,7 @@ return new class () extends Migration {
             $table->json('content')->nullable();
             $table->json('anchor')->nullable();
             $table->boolean('is_active')->default(true);
-            $table->integer('order')->autoIncrement();
+            $table->integer('sort_order')->autoIncrement();
             $table->timestamps();
         });
     }

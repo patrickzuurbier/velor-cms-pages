@@ -80,8 +80,8 @@ class ParagraphResource extends AbstractResource
                     'nullable',
                     UniqueTranslation::make('paragraphs'),
                 ]),
-            Number::make('order')
-                ->label(__('velor-pages::resources.paragraphs.fields.order'))
+            Number::make('sort_order')
+                ->label(__('velor-pages::resources.paragraphs.fields.sort_order'))
                 ->sortable(),
         ];
     }

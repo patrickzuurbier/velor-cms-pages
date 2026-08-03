@@ -116,7 +116,7 @@ class Page extends AbstractModel implements TranslatableInterface
      */
     public function paragraphs(): HasMany
     {
-        return $this->hasMany(Paragraph::class);
+        return $this->hasMany(Paragraph::class)->orderBy('sort_order');
     }
 
     /**

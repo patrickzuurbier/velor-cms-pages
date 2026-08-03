@@ -6,6 +6,15 @@ This package follows semantic versioning: `MAJOR.MINOR.PATCH`.
 
 ## [Unreleased]
 
+### Added
+
+- Added draggable paragraph ordering inside a page through Velor CMS core row
+  ordering.
+
+### Changed
+
+- Renamed the persistent paragraph order column from `order` to `sort_order`.
+
 ## [1.0.3] - 2026-07-23
 
 ### Changed

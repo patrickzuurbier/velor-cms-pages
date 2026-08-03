@@ -32,6 +32,11 @@ class ParagraphPolicy
         return $this->allows($user, Paragraph::class, __FUNCTION__);
     }
 
+    public function reorder(User $user): bool
+    {
+        return $this->allows($user, Paragraph::class, __FUNCTION__);
+    }
+
     public function delete(User $user, Paragraph $paragraph): bool
     {
         return $this->allows($user, Paragraph::class, __FUNCTION__);
