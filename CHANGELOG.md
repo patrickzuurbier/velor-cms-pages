@@ -6,6 +6,8 @@ This package follows semantic versioning: `MAJOR.MINOR.PATCH`.
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-08-03
+
 ### Added
 
 - Added draggable paragraph ordering inside a page through Velor CMS core row
@@ -45,7 +47,8 @@ This package follows semantic versioning: `MAJOR.MINOR.PATCH`.
 - Config override maps for project-owned resource and policy classes.
 - MIT license file for the package repository.
 
-[Unreleased]: https://github.com/patrickzuurbier/velor-cms-pages/compare/1.0.3...HEAD
+[Unreleased]: https://github.com/patrickzuurbier/velor-cms-pages/compare/1.1.0...HEAD
+[1.1.0]: https://github.com/patrickzuurbier/velor-cms-pages/compare/1.0.3...1.1.0
 [1.0.3]: https://github.com/patrickzuurbier/velor-cms-pages/compare/1.0.2...1.0.3
 [1.0.2]: https://github.com/patrickzuurbier/velor-cms-pages/compare/1.0.1...1.0.2
 [1.0.1]: https://github.com/patrickzuurbier/velor-cms-pages/compare/1.0.0...1.0.1
