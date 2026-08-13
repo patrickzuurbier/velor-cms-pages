@@ -6,6 +6,11 @@ This package follows semantic versioning: `MAJOR.MINOR.PATCH`.
 
 ## [Unreleased]
 
+### Fixed
+
+- Clarified that package seeders can be run from the package namespace without
+  publishing them first.
+
 ## [1.2.0] - 2026-08-13
 
 ### Changed

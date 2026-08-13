@@ -102,13 +102,17 @@ For local development, use the Makefile from the Velor CMS host application:
 make migrate
 ```
 
-Optionally publish and run the package seeders for local data:
+Optionally run the package seeders for local data:
 
 ```bash
-php artisan vendor:publish --tag=velor-pages-seeders
-php artisan db:seed --class=Velor\Pages\Database\Seeders\PagesTableSeeder
-php artisan db:seed --class=Velor\Pages\Database\Seeders\ParagraphsTableSeeder
+php artisan db:seed --class='Velor\Pages\Database\Seeders\PagesTableSeeder'
+php artisan db:seed --class='Velor\Pages\Database\Seeders\ParagraphsTableSeeder'
 ```
+
+The seeders do not need to be published before running them. Publish them only
+when the host application should customize the seed data; after publishing,
+adjust the seeder namespace to the host application's seeder namespace before
+running the published copies.
 
 ## Package Contents
 
