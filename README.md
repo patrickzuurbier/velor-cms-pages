@@ -7,7 +7,7 @@ tests.
 
 This package owns Page and Paragraph models, factories, migrations, seeders,
 controllers, form requests, resource classes, policies, resource translations,
-resource registration, policy registration, sidebar registration, and CMS
+resource registration, policy registration, CMS menu registration, and CMS
 routes.
 
 ## Contents
@@ -20,7 +20,7 @@ routes.
 - [Controllers](#controllers)
 - [Form Requests](#form-requests)
 - [Resources](#resources)
-- [Sidebar](#sidebar)
+- [CMS Menu](#cms-menu)
 - [Policies](#policies)
 - [Publishing](#publishing)
 - [Testing](#testing)
@@ -81,7 +81,7 @@ composer config repositories.velor-cms-pages vcs https://github.com/patrickzuurb
 ```
 
 The package service provider is auto-discovered by Laravel. When enabled, it
-registers resources, policies, sidebar items, CMS routes, translations, and
+registers resources, policies, CMS menu items, CMS routes, translations, and
 migrations.
 
 Publish the package migrations when the application should own them:
@@ -188,10 +188,10 @@ is detected by Velor CMS core and the `RichText` image button opens the Velor
 CMS image picker. Without that route, Quill keeps its original URL-based image
 insertion behaviour.
 
-## Sidebar
+## CMS Menu
 
-The package registers its sidebar item through Velor CMS'
-`SidebarItemRegistryInterface`. It anchors the Pages item before the Images
+The package registers its menu item through Velor CMS'
+`CmsMenuItemRegistryInterface`. It anchors the Pages item before the Images
 route, so the package owns its menu entry while the host menu remains
 predictable.
 
@@ -237,7 +237,7 @@ make test
 ```
 
 The package-level `tests` namespace is reserved for standalone package tests.
-Those tests should verify provider boot, resource/policy/sidebar registration,
+Those tests should verify provider boot, resource/policy/CMS menu registration,
 routes, translations, factories, and migrations against a consuming Velor CMS
 test application.
 
@@ -250,7 +250,7 @@ composer remove patrickzuurbier/velor-cms-pages
 ```
 
 Velor CMS core should continue to boot without this package. Package-owned CMS
-routes, resources, policies, sidebar items, translations, and loaded migrations
+routes, resources, policies, CMS menu items, translations, and loaded migrations
 disappear with the package. Existing database tables and published files are
 project data and are not deleted automatically by Composer.
 

@@ -7,7 +7,7 @@ installed.
 Package tests should cover:
 
 - Service provider boot.
-- Resource, policy, sidebar, and route registration.
+- Resource, policy, CMS menu, and route registration.
 - Translation loading.
 - Model factories and database migrations.
 - Core form and index flows against a consuming Velor CMS test application.

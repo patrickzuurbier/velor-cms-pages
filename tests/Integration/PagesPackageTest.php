@@ -12,7 +12,7 @@ use Velor\Pages\Policies\PagePolicy;
 use Velor\Pages\Resources\PageResource;
 use Velor\Pages\Policies\ParagraphPolicy;
 use Velor\Pages\Resources\ParagraphResource;
-use App\Services\CmsNavigation\Contracts\SidebarItemRegistryInterface;
+use App\Services\CmsMenu\Contracts\CmsMenuItemRegistryInterface;
 use App\Services\Resources\Contracts\ResourceRegistryInterface;
 use App\Services\Authorization\Contracts\PolicyRegistryInterface;
 
@@ -34,9 +34,9 @@ class PagesPackageTest extends AbstractIntegrationTestCase
         $this->assertSame(ParagraphPolicy::class, $registry->privilegePolicies()[Paragraph::class]);
     }
 
-    public function test_it_registers_pages_sidebar_item_before_images(): void
+    public function test_it_registers_pages_cms_menu_item_before_images(): void
     {
-        $registry = $this->app->make(SidebarItemRegistryInterface::class);
+        $registry = $this->app->make(CmsMenuItemRegistryInterface::class);
         $routeNames = array_map(
             static fn ($item): string => $item->routeName,
             $registry->items(),

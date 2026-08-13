@@ -6,6 +6,11 @@ This package follows semantic versioning: `MAJOR.MINOR.PATCH`.
 
 ## [Unreleased]
 
+### Changed
+
+- Updated the package to use Velor CMS `^1.8` CMS menu registration
+  contracts.
+
 ## [1.1.0] - 2026-08-03
 
 ### Added
@@ -43,7 +48,7 @@ This package follows semantic versioning: `MAJOR.MINOR.PATCH`.
 
 - Initial local package extraction for the Page and Paragraph resource slice.
 - Package-owned models, factories, migrations, seeders, controllers, requests,
-  resources, policies, translations, sidebar registration, and CMS routes.
+  resources, policies, translations, CMS menu registration, and CMS routes.
 - Config override maps for project-owned resource and policy classes.
 - MIT license file for the package repository.
 

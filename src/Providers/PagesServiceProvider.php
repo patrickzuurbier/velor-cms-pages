@@ -6,7 +6,7 @@ namespace Velor\Pages\Providers;
 
 use Velor\Pages\Models\Page;
 use Velor\Pages\Models\Paragraph;
-use App\Data\Cms\SidebarItemData;
+use App\Services\CmsMenu\Data\CmsMenuItemData;
 use Illuminate\Support\ServiceProvider;
 use Velor\Pages\Policies\PagePolicy;
 use Velor\Pages\Resources\PageResource;
@@ -16,7 +16,7 @@ use Illuminate\Contracts\Config\Repository as ConfigRepository;
 use App\Services\Resources\Contracts\ResourceRegistryInterface;
 use App\Services\CmsRouting\Contracts\CmsRouteRegistrarInterface;
 use App\Services\Authorization\Contracts\PolicyRegistryInterface;
-use App\Services\CmsNavigation\Contracts\SidebarItemRegistryInterface;
+use App\Services\CmsMenu\Contracts\CmsMenuItemRegistryInterface;
 
 class PagesServiceProvider extends ServiceProvider
 {
@@ -29,7 +29,7 @@ class PagesServiceProvider extends ServiceProvider
         CmsRouteRegistrarInterface $cmsRoutes,
         ResourceRegistryInterface $resources,
         PolicyRegistryInterface $policies,
-        SidebarItemRegistryInterface $sidebarItems,
+        CmsMenuItemRegistryInterface $cmsMenuItems,
         ConfigRepository $config,
     ): void {
         $this->loadTranslationsFrom(__DIR__ . '/../../lang', 'velor-pages');
@@ -42,9 +42,9 @@ class PagesServiceProvider extends ServiceProvider
             $policies->register(Page::class, $this->configuredClass($config, 'velor-pages.policies.' . Page::class, PagePolicy::class));
             $policies->register(Paragraph::class, $this->configuredClass($config, 'velor-pages.policies.' . Paragraph::class, ParagraphPolicy::class));
 
-            $sidebarItems->registerBefore(
+            $cmsMenuItems->registerBefore(
                 'images.index',
-                new SidebarItemData(Page::class, 'pages.index', 'velor-pages::resources.pages.plural', 'bi-files'),
+                new CmsMenuItemData(Page::class, 'pages.index', 'velor-pages::resources.pages.plural', 'bi-files'),
             );
 
             $cmsRoutes->loadAuthenticated(__DIR__ . '/../../routes/cms.php');
