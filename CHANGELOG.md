@@ -6,6 +6,8 @@ This package follows semantic versioning: `MAJOR.MINOR.PATCH`.
 
 ## [Unreleased]
 
+## [1.2.1] - 2026-08-20
+
 ### Fixed
 
 - Changed paragraph row order input to the dedicated Velor CMS Order field.
@@ -13,8 +15,6 @@ This package follows semantic versioning: `MAJOR.MINOR.PATCH`.
   sort order values.
 - Removed default paragraph ordering from the Page model relationship so the
   paragraph index can control its own sorting.
-- Clarified that package seeders can be run from the package namespace without
-  publishing them first.
 
 ## [1.2.0] - 2026-08-13
 
@@ -64,7 +64,8 @@ This package follows semantic versioning: `MAJOR.MINOR.PATCH`.
 - Config override maps for project-owned resource and policy classes.
 - MIT license file for the package repository.
 
-[Unreleased]: https://github.com/patrickzuurbier/velor-cms-pages/compare/1.2.0...HEAD
+[Unreleased]: https://github.com/patrickzuurbier/velor-cms-pages/compare/1.2.1...HEAD
+[1.2.1]: https://github.com/patrickzuurbier/velor-cms-pages/compare/1.2.0...1.2.1
 [1.2.0]: https://github.com/patrickzuurbier/velor-cms-pages/compare/1.1.0...1.2.0
 [1.1.0]: https://github.com/patrickzuurbier/velor-cms-pages/compare/1.0.3...1.1.0
 [1.0.3]: https://github.com/patrickzuurbier/velor-cms-pages/compare/1.0.2...1.0.3
