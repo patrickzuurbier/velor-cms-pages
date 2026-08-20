@@ -6,6 +6,8 @@ This package follows semantic versioning: `MAJOR.MINOR.PATCH`.
 
 ## [Unreleased]
 
+## [1.2.2] - 2026-08-20
+
 ### Fixed
 
 - Removed the explicit null paragraph sort order from the factory so row
@@ -69,7 +71,8 @@ This package follows semantic versioning: `MAJOR.MINOR.PATCH`.
 - Config override maps for project-owned resource and policy classes.
 - MIT license file for the package repository.
 
-[Unreleased]: https://github.com/patrickzuurbier/velor-cms-pages/compare/1.2.1...HEAD
+[Unreleased]: https://github.com/patrickzuurbier/velor-cms-pages/compare/1.2.2...HEAD
+[1.2.2]: https://github.com/patrickzuurbier/velor-cms-pages/compare/1.2.1...1.2.2
 [1.2.1]: https://github.com/patrickzuurbier/velor-cms-pages/compare/1.2.0...1.2.1
 [1.2.0]: https://github.com/patrickzuurbier/velor-cms-pages/compare/1.1.0...1.2.0
 [1.1.0]: https://github.com/patrickzuurbier/velor-cms-pages/compare/1.0.3...1.1.0
