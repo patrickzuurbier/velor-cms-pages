@@ -8,6 +8,8 @@ This package follows semantic versioning: `MAJOR.MINOR.PATCH`.
 
 ### Fixed
 
+- Removed default paragraph ordering from the Page model relationship so the
+  paragraph index can control its own sorting.
 - Clarified that package seeders can be run from the package namespace without
   publishing them first.
 

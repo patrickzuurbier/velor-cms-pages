@@ -93,4 +93,30 @@ class ParagraphOrderTest extends AbstractDatabaseIntegrationTestCase
         $response->assertSee('data-context-key="page_id"', false);
         $response->assertSee('data-context-value="' . $page->getKey() . '"', false);
     }
+
+    public function test_paragraph_index_can_be_sorted_by_sortable_column(): void
+    {
+        $this->actingAsAdmin();
+        $page = Page::factory()->create();
+        Paragraph::factory()->for($page)->create([
+            'name'       => 'Zulu paragraph',
+            'sort_order' => 1,
+        ]);
+        Paragraph::factory()->for($page)->create([
+            'name'       => 'Alpha paragraph',
+            'sort_order' => 2,
+        ]);
+
+        $response = $this->get(route('pages.paragraphs.index', [
+            'page'      => $page,
+            'sort'      => 'name',
+            'direction' => 'asc',
+        ]));
+
+        $response->assertOk();
+        $response->assertSeeInOrder([
+            'Alpha paragraph',
+            'Zulu paragraph',
+        ]);
+    }
 }
