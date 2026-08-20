@@ -23,13 +23,12 @@ class ParagraphFactory extends Factory
     public function definition(): array
     {
         return [
-            'name'       => $this->faker->word(),
-            'title'      => $this->fakeTranslations(fn () => $this->faker->sentence()),
-            'intro'      => $this->fakeTranslations(fn () => $this->faker->paragraph()),
-            'content'    => $this->fakeTranslations(fn () => $this->faker->paragraph()),
-            'anchor'     => $this->fakeTranslations(fn () => $this->faker->url()),
-            'is_active'  => $this->faker->boolean(),
-            'sort_order' => null,
+            'name'      => $this->faker->word(),
+            'title'     => $this->fakeTranslations(fn () => $this->faker->sentence()),
+            'intro'     => $this->fakeTranslations(fn () => $this->faker->paragraph()),
+            'content'   => $this->fakeTranslations(fn () => $this->faker->paragraph()),
+            'anchor'    => $this->fakeTranslations(fn () => $this->faker->url()),
+            'is_active' => $this->faker->boolean(),
         ];
     }
 }

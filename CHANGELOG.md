@@ -6,6 +6,11 @@ This package follows semantic versioning: `MAJOR.MINOR.PATCH`.
 
 ## [Unreleased]
 
+### Fixed
+
+- Removed the explicit null paragraph sort order from the factory so row
+  ordering can fill missing positions.
+
 ## [1.2.1] - 2026-08-20
 
 ### Fixed
