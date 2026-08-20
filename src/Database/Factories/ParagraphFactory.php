@@ -29,7 +29,7 @@ class ParagraphFactory extends Factory
             'content'    => $this->fakeTranslations(fn () => $this->faker->paragraph()),
             'anchor'     => $this->fakeTranslations(fn () => $this->faker->url()),
             'is_active'  => $this->faker->boolean(),
-            'sort_order' => $this->faker->unique()->numberBetween(1, 100),
+            'sort_order' => null,
         ];
     }
 }

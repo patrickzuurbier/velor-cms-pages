@@ -8,6 +8,9 @@ This package follows semantic versioning: `MAJOR.MINOR.PATCH`.
 
 ### Fixed
 
+- Changed paragraph row order input to the dedicated Velor CMS Order field.
+- Let paragraph factories use automatic row order assignment instead of random
+  sort order values.
 - Removed default paragraph ordering from the Page model relationship so the
   paragraph index can control its own sorting.
 - Clarified that package seeders can be run from the package namespace without

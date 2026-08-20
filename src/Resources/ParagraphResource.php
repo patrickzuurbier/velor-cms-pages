@@ -8,7 +8,7 @@ use Velor\Pages\Models\Paragraph;
 use App\Resources\AbstractResource;
 use App\Resources\Fields\Checkbox;
 use App\Resources\Fields\Field;
-use App\Resources\Fields\Number;
+use App\Resources\Fields\Order;
 use App\Resources\Fields\RichText;
 use App\Resources\Fields\Text;
 use App\Resources\Fields\Textarea;
@@ -80,9 +80,8 @@ class ParagraphResource extends AbstractResource
                     'nullable',
                     UniqueTranslation::make('paragraphs'),
                 ]),
-            Number::make('sort_order')
-                ->label(__('velor-pages::resources.paragraphs.fields.sort_order'))
-                ->sortable(),
+            Order::make('sort_order')
+                ->label(__('velor-pages::resources.paragraphs.fields.sort_order')),
         ];
     }
 
