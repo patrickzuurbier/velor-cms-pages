@@ -6,6 +6,8 @@ This package follows semantic versioning: `MAJOR.MINOR.PATCH`.
 
 ## [Unreleased]
 
+## [1.3.0] - 2026-08-31
+
 ### Changed
 
 - Updated controllers and resource registration for the Velor CMS `^1.9`
@@ -77,7 +79,8 @@ This package follows semantic versioning: `MAJOR.MINOR.PATCH`.
 - Config override maps for project-owned resource and policy classes.
 - MIT license file for the package repository.
 
-[Unreleased]: https://github.com/patrickzuurbier/velor-cms-pages/compare/1.2.2...HEAD
+[Unreleased]: https://github.com/patrickzuurbier/velor-cms-pages/compare/1.3.0...HEAD
+[1.3.0]: https://github.com/patrickzuurbier/velor-cms-pages/compare/1.2.2...1.3.0
 [1.2.2]: https://github.com/patrickzuurbier/velor-cms-pages/compare/1.2.1...1.2.2
 [1.2.1]: https://github.com/patrickzuurbier/velor-cms-pages/compare/1.2.0...1.2.1
 [1.2.0]: https://github.com/patrickzuurbier/velor-cms-pages/compare/1.1.0...1.2.0
