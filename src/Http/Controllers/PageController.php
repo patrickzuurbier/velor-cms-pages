@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
+use Velor\Pages\Resources\PageResource;
 use Velor\Pages\Http\Requests\PageRequest;
 use App\Services\Resources\Contracts\ResourceIndexQueryInterface;
 
@@ -16,6 +17,7 @@ class PageController extends Controller
 {
     public function __construct(
         protected ResourceIndexQueryInterface $resourceIndexQuery,
+        protected PageResource $pageResource,
     ) {
     }
 
@@ -25,10 +27,10 @@ class PageController extends Controller
             'cms.layouts.index',
             [
                 'pagination' => $this->resourceIndexQuery->paginate(
-                    model: Page::class,
+                    resource: $this->pageResource,
                     search: $request->string('search')->toString(),
                 ),
-                'model' => new Page(),
+                'resource' => $this->pageResource,
             ]
         );
     }
@@ -36,7 +38,7 @@ class PageController extends Controller
     public function create(): View
     {
         return view('cms.layouts.form', [
-            'model' => new Page(),
+            'resource' => $this->pageResource,
         ]);
     }
 
@@ -52,14 +54,14 @@ class PageController extends Controller
     public function show(Page $page): View
     {
         return view('cms.layouts.show', [
-            'model' => $page,
+            'resource' => $this->pageResource,
         ]);
     }
 
     public function edit(Page $page): View
     {
         return view('cms.layouts.form', [
-            'model' => $page,
+            'resource' => $this->pageResource,
         ]);
     }
 

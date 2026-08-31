@@ -2,8 +2,7 @@
 
 Pages is a first-party resource plugin for Velor CMS. It owns the page and
 paragraph vertical slice and uses Velor CMS extension points for resources,
-routes, menu items, policies, privileges, config, translations, migrations, and
-tests.
+routes, menu items, policies, privileges, translations, migrations, and tests.
 
 This package owns Page and Paragraph models, factories, migrations, seeders,
 controllers, form requests, resource classes, policies, resource translations,
@@ -62,6 +61,8 @@ composer config repositories.velor-cms-pages vcs https://github.com/patrickzuurb
 composer require patrickzuurbier/velor-cms-pages:^1.2
 ```
 
+This package requires Velor CMS `^1.9`.
+
 For local path development inside the Velor CMS repository, temporarily point
 Composer to the package workspace and update the package from the app
 container:
@@ -80,8 +81,8 @@ composer config --unset repositories.velor-cms-pages
 composer config repositories.velor-cms-pages vcs https://github.com/patrickzuurbier/velor-cms-pages.git
 ```
 
-The package service provider is auto-discovered by Laravel. When enabled, it
-registers resources, policies, CMS menu items, CMS routes, translations, and
+The package service provider is auto-discovered by Laravel. It registers
+resources, policies, CMS menu items, CMS routes, translations, and
 migrations.
 
 Publish the package migrations when the application should own them:
@@ -132,7 +133,6 @@ database/seeders
 lang/en/resources.php
 lang/nl/resources.php
 routes/cms.php
-config/velor-pages.php
 tests
 ```
 
@@ -174,15 +174,6 @@ validation remains defined by the package resources.
 The service provider registers the package Page and Paragraph resource classes
 through Velor CMS' `ResourceRegistryInterface`.
 
-Published config can override the resource classes when a project needs custom
-resources:
-
-```php
-'resources' => [
-    'page' => App\Resources\PageResource::class,
-],
-```
-
 The Paragraph resource uses Velor CMS' core `RichText` field. Rich text image
 insertion is optional and should be provided by an images/media package through
 Velor CMS extension points. This package must not require an images package.
@@ -205,32 +196,19 @@ The service provider registers the package Page and Paragraph policies through
 Velor CMS' `PolicyRegistryInterface`. Registered policies are also exposed to
 role privileges by default.
 
-Published config can override policy classes per model:
-
-```php
-'policies' => [
-    Velor\Pages\Models\Page::class => App\Policies\PagePolicy::class,
-],
-```
-
 ## Publishing
 
 The package should remain in `vendor` by default. Publish only project-owned
 files:
 
 ```bash
-php artisan vendor:publish --tag=velor-pages-config
 php artisan vendor:publish --tag=velor-pages-migrations
 php artisan vendor:publish --tag=velor-pages-seeders
 php artisan vendor:publish --tag=velor-pages-lang
 ```
 
-Optional override tags can be added later:
-
-Resource, controller, policy, and model customization should use publishable
-stubs with host namespaces plus package config override maps. Do not publish raw
-package PHP classes into `app/`, because their namespaces still belong to the
-package.
+Optional override tags can be added later when a package-owned customization
+surface is intentionally designed.
 
 ## Testing
 
