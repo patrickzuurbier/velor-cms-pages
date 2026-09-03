@@ -4,17 +4,18 @@ declare(strict_types=1);
 
 namespace Velor\Pages\Http\Requests;
 
-use Velor\Pages\Models\Paragraph;
-use App\Http\Requests\AbstractFormRequest;
-use Illuminate\Contracts\Validation\ValidationRule;
 use App\Contracts\Factories\Validation\ResourceValidationAttributesFactoryInterface;
 use App\Contracts\Factories\Validation\ResourceValidationRulesFactoryInterface;
+use App\Http\Requests\AbstractFormRequest;
+use Illuminate\Contracts\Validation\ValidationRule;
+use Velor\Pages\Resources\ParagraphResource;
 
 class ParagraphRequest extends AbstractFormRequest
 {
     public function __construct(
         protected ResourceValidationRulesFactoryInterface $rulesFactory,
         protected ResourceValidationAttributesFactoryInterface $attributesFactory,
+        protected ParagraphResource $paragraphResource,
     ) {
         parent::__construct();
     }
@@ -29,7 +30,7 @@ class ParagraphRequest extends AbstractFormRequest
      */
     public function rules(): array
     {
-        return $this->rulesFactory->make(Paragraph::class);
+        return $this->rulesFactory->make($this->paragraphResource);
     }
 
     /**
@@ -37,7 +38,7 @@ class ParagraphRequest extends AbstractFormRequest
      */
     public function attributes(): array
     {
-        return $this->attributesFactory->make(Paragraph::class);
+        return $this->attributesFactory->make($this->paragraphResource);
     }
 
     /**
