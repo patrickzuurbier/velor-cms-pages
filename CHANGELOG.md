@@ -6,6 +6,12 @@ This package follows semantic versioning: `MAJOR.MINOR.PATCH`.
 
 ## [Unreleased]
 
+## [1.3.2] - 2026-09-07
+
+### Changed
+
+- Moved page and paragraph persistence into package repositories.
+
 ## [1.3.1] - 2026-09-03
 
 ### Fixed
@@ -86,7 +92,8 @@ This package follows semantic versioning: `MAJOR.MINOR.PATCH`.
 - Config override maps for project-owned resource and policy classes.
 - MIT license file for the package repository.
 
-[Unreleased]: https://github.com/patrickzuurbier/velor-cms-pages/compare/1.3.1...HEAD
+[Unreleased]: https://github.com/patrickzuurbier/velor-cms-pages/compare/1.3.2...HEAD
+[1.3.2]: https://github.com/patrickzuurbier/velor-cms-pages/compare/1.3.1...1.3.2
 [1.3.1]: https://github.com/patrickzuurbier/velor-cms-pages/compare/1.3.0...1.3.1
 [1.3.0]: https://github.com/patrickzuurbier/velor-cms-pages/compare/1.2.2...1.3.0
 [1.2.2]: https://github.com/patrickzuurbier/velor-cms-pages/compare/1.2.1...1.2.2
