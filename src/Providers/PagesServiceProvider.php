@@ -10,15 +10,25 @@ use App\Services\CmsMenu\Data\CmsMenuItemData;
 use Illuminate\Support\ServiceProvider;
 use Velor\Pages\Policies\PagePolicy;
 use Velor\Pages\Resources\PageResource;
+use Velor\Pages\Repositories\PageRepository;
 use Velor\Pages\Policies\ParagraphPolicy;
 use Velor\Pages\Resources\ParagraphResource;
+use Velor\Pages\Repositories\ParagraphRepository;
 use App\Services\Resources\Contracts\ResourceRegistryInterface;
 use App\Services\CmsRouting\Contracts\CmsRouteRegistrarInterface;
 use App\Services\Authorization\Contracts\PolicyRegistryInterface;
 use App\Services\CmsMenu\Contracts\CmsMenuItemRegistryInterface;
+use Velor\Pages\Repositories\Contracts\PageRepositoryInterface;
+use Velor\Pages\Repositories\Contracts\ParagraphRepositoryInterface;
 
 class PagesServiceProvider extends ServiceProvider
 {
+    public function register(): void
+    {
+        $this->app->singleton(PageRepositoryInterface::class, PageRepository::class);
+        $this->app->singleton(ParagraphRepositoryInterface::class, ParagraphRepository::class);
+    }
+
     public function boot(
         CmsRouteRegistrarInterface $cmsRoutes,
         ResourceRegistryInterface $resources,

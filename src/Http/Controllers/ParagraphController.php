@@ -12,6 +12,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Velor\Pages\Resources\ParagraphResource;
 use Velor\Pages\Http\Requests\ParagraphRequest;
+use Velor\Pages\Repositories\Contracts\ParagraphRepositoryInterface;
 use App\Services\Resources\Contracts\ResourceIndexQueryInterface;
 
 class ParagraphController extends Controller
@@ -19,6 +20,7 @@ class ParagraphController extends Controller
     public function __construct(
         protected ResourceIndexQueryInterface $resourceIndexQuery,
         protected ParagraphResource $paragraphResource,
+        protected ParagraphRepositoryInterface $paragraphRepository,
     ) {
     }
 
@@ -47,7 +49,7 @@ class ParagraphController extends Controller
 
     public function store(ParagraphRequest $request, Page $page): RedirectResponse
     {
-        $paragraph = $page->paragraphs()->create($request->validated());
+        $paragraph = $this->paragraphRepository->createForPage($page, $request->validated());
 
         return redirect()
             ->route('pages.paragraphs.show', ['page' => $page->getKey(), 'paragraph' => $paragraph->getKey()])
@@ -70,7 +72,7 @@ class ParagraphController extends Controller
 
     public function update(ParagraphRequest $request, Page $page, Paragraph $paragraph): RedirectResponse
     {
-        $paragraph->update($request->validated());
+        $this->paragraphRepository->update($paragraph, $request->validated());
 
         return redirect()
             ->route('pages.paragraphs.show', ['page' => $page->getKey(), 'paragraph' => $paragraph->getKey()])
@@ -79,7 +81,7 @@ class ParagraphController extends Controller
 
     public function destroy(Page $page, Paragraph $paragraph): RedirectResponse
     {
-        $paragraph->delete();
+        $this->paragraphRepository->delete($paragraph);
 
         return redirect()
             ->route('pages.paragraphs.index', ['page' => $page->getKey()])

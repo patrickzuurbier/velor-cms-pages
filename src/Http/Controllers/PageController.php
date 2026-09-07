@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Velor\Pages\Resources\PageResource;
 use Velor\Pages\Http\Requests\PageRequest;
+use Velor\Pages\Repositories\Contracts\PageRepositoryInterface;
 use App\Services\Resources\Contracts\ResourceIndexQueryInterface;
 
 class PageController extends Controller
@@ -18,6 +19,7 @@ class PageController extends Controller
     public function __construct(
         protected ResourceIndexQueryInterface $resourceIndexQuery,
         protected PageResource $pageResource,
+        protected PageRepositoryInterface $pageRepository,
     ) {
     }
 
@@ -44,7 +46,7 @@ class PageController extends Controller
 
     public function store(PageRequest $request): RedirectResponse
     {
-        $page = Page::create($request->validated());
+        $page = $this->pageRepository->create($request->validated());
 
         return redirect()
             ->route('pages.show', ['page' => $page->getKey()])
@@ -67,7 +69,7 @@ class PageController extends Controller
 
     public function update(PageRequest $request, Page $page): RedirectResponse
     {
-        $page->update($request->validated());
+        $this->pageRepository->update($page, $request->validated());
 
         return redirect()
             ->route('pages.show', ['page' => $page->getKey()])
@@ -76,7 +78,7 @@ class PageController extends Controller
 
     public function destroy(Page $page): RedirectResponse
     {
-        $page->delete();
+        $this->pageRepository->delete($page);
 
         return redirect()
             ->route('pages.index')
