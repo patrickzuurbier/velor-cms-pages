@@ -6,6 +6,7 @@ namespace Velor\Pages\Tests\Integration;
 
 use Tests\Integration\AbstractDatabaseIntegrationTestCase;
 use Velor\Pages\Models\Page;
+use Velor\Pages\Models\Paragraph;
 use Velor\Pages\Repositories\Contracts\PageRepositoryInterface;
 
 class PageRepositoryTest extends AbstractDatabaseIntegrationTestCase
@@ -44,5 +45,38 @@ class PageRepositoryTest extends AbstractDatabaseIntegrationTestCase
         $this->assertDatabaseMissing('pages', [
             'id' => $page->getKey(),
         ]);
+    }
+
+    public function test_it_returns_active_link_target_pages_with_active_paragraphs(): void
+    {
+        $activePage = Page::factory()->create([
+            'is_active' => true,
+            'name'      => 'About',
+        ]);
+        Page::factory()->create([
+            'is_active' => false,
+            'name'      => 'Hidden',
+        ]);
+        $activeParagraph = Paragraph::factory()->for($activePage)->create([
+            'is_active' => true,
+            'name'      => 'Team',
+        ]);
+        Paragraph::factory()->for($activePage)->create([
+            'is_active' => false,
+            'name'      => 'Hidden paragraph',
+        ]);
+
+        $pages = $this->pageRepository->linkTargetPages();
+        $resultPage = $pages->first();
+
+        $this->assertCount(1, $pages);
+        $this->assertInstanceOf(Page::class, $resultPage);
+        $this->assertTrue($resultPage->is($activePage));
+        $this->assertCount(1, $resultPage->paragraphs);
+
+        $resultParagraph = $resultPage->paragraphs->first();
+
+        $this->assertInstanceOf(Paragraph::class, $resultParagraph);
+        $this->assertTrue($resultParagraph->is($activeParagraph));
     }
 }

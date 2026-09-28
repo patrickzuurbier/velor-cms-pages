@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Velor\Pages\Repositories;
 
+use Illuminate\Database\Eloquent\Collection as EloquentCollection;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Velor\Pages\Models\Page;
 use Velor\Pages\Repositories\Contracts\PageRepositoryInterface;
 
@@ -16,6 +18,24 @@ class PageRepository extends AbstractRepository implements PageRepositoryInterfa
      * @var class-string<Page>
      */
     protected string $model = Page::class;
+
+    /**
+     * @return EloquentCollection<int, Page>
+     */
+    public function linkTargetPages(): EloquentCollection
+    {
+        return $this->query()
+            ->where('is_active', true)
+            ->with([
+                'paragraphs' => static function (Relation $relation): void {
+                    $relation->getQuery()
+                        ->where('is_active', true)
+                        ->orderBy('sort_order');
+                },
+            ])
+            ->orderBy('name')
+            ->get();
+    }
 
     /**
      * @param  array<string, mixed>  $attributes

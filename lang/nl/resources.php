@@ -3,6 +3,10 @@
 declare(strict_types=1);
 
 return [
+    'link_targets' => [
+        'pages'             => 'Pagina\'s',
+        'paragraph_anchors' => 'Paragraafankers',
+    ],
     'pages' => [
         'singular' => 'Pagina',
         'plural'   => 'Pagina\'s',

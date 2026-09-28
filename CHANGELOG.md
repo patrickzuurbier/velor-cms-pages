@@ -6,6 +6,15 @@ This package follows semantic versioning: `MAJOR.MINOR.PATCH`.
 
 ## [Unreleased]
 
+### Added
+
+- Added selectable link targets for active pages and paragraph anchors through
+  the Velor CMS Link field.
+
+### Changed
+
+- Raised the Velor CMS requirement to `^1.12` for Link target support.
+
 ## [1.3.2] - 2026-09-07
 
 ### Changed

@@ -7,6 +7,7 @@ namespace Velor\Pages\Providers;
 use Velor\Pages\Models\Page;
 use Velor\Pages\Models\Paragraph;
 use App\Services\CmsMenu\Data\CmsMenuItemData;
+use App\Services\LinkTargets\Contracts\LinkTargetRegistryInterface;
 use Illuminate\Support\ServiceProvider;
 use Velor\Pages\Policies\PagePolicy;
 use Velor\Pages\Resources\PageResource;
@@ -20,6 +21,7 @@ use App\Services\Authorization\Contracts\PolicyRegistryInterface;
 use App\Services\CmsMenu\Contracts\CmsMenuItemRegistryInterface;
 use Velor\Pages\Repositories\Contracts\PageRepositoryInterface;
 use Velor\Pages\Repositories\Contracts\ParagraphRepositoryInterface;
+use Velor\Pages\Services\LinkTargets\Providers\PagesLinkTargetProvider;
 
 class PagesServiceProvider extends ServiceProvider
 {
@@ -34,6 +36,7 @@ class PagesServiceProvider extends ServiceProvider
         ResourceRegistryInterface $resources,
         PolicyRegistryInterface $policies,
         CmsMenuItemRegistryInterface $cmsMenuItems,
+        LinkTargetRegistryInterface $linkTargets,
     ): void {
         $this->loadTranslationsFrom(__DIR__ . '/../../lang', 'velor-pages');
         $this->loadMigrationsFrom(__DIR__ . '/../../database/migrations');
@@ -48,6 +51,8 @@ class PagesServiceProvider extends ServiceProvider
             'images.index',
             new CmsMenuItemData(Page::class, 'pages.index', 'velor-pages::resources.pages.plural', 'bi-files'),
         );
+
+        $linkTargets->register($this->app->make(PagesLinkTargetProvider::class));
 
         $cmsRoutes->loadAuthenticated(__DIR__ . '/../../routes/cms.php');
 

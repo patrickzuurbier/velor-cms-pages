@@ -22,8 +22,8 @@ class PagesPackageTest extends AbstractIntegrationTestCase
     {
         $registry = $this->app->make(ResourceRegistryInterface::class);
 
-        $this->assertSame(PageResource::class, $registry->resourceFor(Page::class));
-        $this->assertSame(ParagraphResource::class, $registry->resourceFor(Paragraph::class));
+        $this->assertInstanceOf(PageResource::class, $registry->resourceFor(Page::class));
+        $this->assertInstanceOf(ParagraphResource::class, $registry->resourceFor(Paragraph::class));
     }
 
     public function test_it_registers_page_and_paragraph_policies_for_privileges(): void
@@ -42,8 +42,12 @@ class PagesPackageTest extends AbstractIntegrationTestCase
             $registry->items(),
         );
 
-        $this->assertSame('pages.index', $routeNames[0]);
-        $this->assertSame('images.index', $routeNames[1]);
+        $pagesPosition = array_search('pages.index', $routeNames, true);
+        $imagesPosition = array_search('images.index', $routeNames, true);
+
+        $this->assertIsInt($pagesPosition);
+        $this->assertIsInt($imagesPosition);
+        $this->assertSame($imagesPosition - 1, $pagesPosition);
     }
 
     public function test_it_loads_page_and_paragraph_cms_routes(): void

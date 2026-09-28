@@ -61,7 +61,7 @@ composer config repositories.velor-cms-pages vcs https://github.com/patrickzuurb
 composer require patrickzuurbier/velor-cms-pages:^1.3
 ```
 
-This package requires Velor CMS `^1.9`.
+This package requires Velor CMS `^1.12`.
 
 For local path development inside the Velor CMS repository, temporarily point
 Composer to the package workspace and update the package from the app
@@ -84,6 +84,13 @@ composer config repositories.velor-cms-pages vcs https://github.com/patrickzuurb
 The package service provider is auto-discovered by Laravel. It registers
 resources, policies, CMS menu items, CMS routes, translations, and
 migrations.
+
+## Link Targets
+
+The package exposes active pages and active paragraph anchors to Velor CMS Link
+fields. Page targets use `/{slug}` and paragraph targets use
+`/{slug}#{anchor}` for each available translation. Selecting a target stores
+only those URLs in the resource using the Link field.
 
 Publish the package migrations when the application should own them:
 
