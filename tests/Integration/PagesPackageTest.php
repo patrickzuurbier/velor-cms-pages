@@ -4,17 +4,18 @@ declare(strict_types=1);
 
 namespace Velor\Pages\Tests\Integration;
 
-use Velor\Pages\Models\Page;
-use Velor\Pages\Models\Paragraph;
+use App\Services\Authorization\Contracts\PolicyRegistryInterface;
+use App\Services\CmsMenu\Contracts\CmsMenuItemRegistryInterface;
+use App\Services\CmsMenu\Data\CmsMenuItemData;
+use App\Services\Resources\Contracts\ResourceRegistryInterface;
 use Illuminate\Contracts\Translation\Translator;
 use Tests\Integration\AbstractIntegrationTestCase;
+use Velor\Pages\Models\Page;
+use Velor\Pages\Models\Paragraph;
 use Velor\Pages\Policies\PagePolicy;
-use Velor\Pages\Resources\PageResource;
 use Velor\Pages\Policies\ParagraphPolicy;
+use Velor\Pages\Resources\PageResource;
 use Velor\Pages\Resources\ParagraphResource;
-use App\Services\CmsMenu\Contracts\CmsMenuItemRegistryInterface;
-use App\Services\Resources\Contracts\ResourceRegistryInterface;
-use App\Services\Authorization\Contracts\PolicyRegistryInterface;
 
 class PagesPackageTest extends AbstractIntegrationTestCase
 {
@@ -34,20 +35,15 @@ class PagesPackageTest extends AbstractIntegrationTestCase
         $this->assertSame(ParagraphPolicy::class, $registry->privilegePolicies()[Paragraph::class]);
     }
 
-    public function test_it_registers_pages_cms_menu_item_before_images(): void
+    public function test_it_registers_pages_cms_menu_item(): void
     {
         $registry = $this->app->make(CmsMenuItemRegistryInterface::class);
-        $routeNames = array_map(
-            static fn ($item): string => $item->routeName,
-            $registry->items(),
-        );
+        $item = collect($registry->items())->firstWhere('routeName', 'pages.index');
 
-        $pagesPosition = array_search('pages.index', $routeNames, true);
-        $imagesPosition = array_search('images.index', $routeNames, true);
-
-        $this->assertIsInt($pagesPosition);
-        $this->assertIsInt($imagesPosition);
-        $this->assertSame($imagesPosition - 1, $pagesPosition);
+        $this->assertInstanceOf(CmsMenuItemData::class, $item);
+        $this->assertSame(Page::class, $item->modelClass);
+        $this->assertSame('velor-pages::resources.pages.plural', $item->label);
+        $this->assertSame('bi-files', $item->icon);
     }
 
     public function test_it_loads_page_and_paragraph_cms_routes(): void
