@@ -6,6 +6,10 @@ This package follows semantic versioning: `MAJOR.MINOR.PATCH`.
 
 ## [Unreleased]
 
+### Fixed
+
+- Allowed optional paragraph title and intro translations to remain empty.
+
 ## [1.4.0] - 2026-09-28
 
 ### Added

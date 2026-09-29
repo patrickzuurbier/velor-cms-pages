@@ -55,13 +55,17 @@ class ParagraphResource extends AbstractResource
                 ->sortable()
                 ->searchable()
                 ->rules([
+                    'nullable',
                     'max:255',
                 ]),
             Textarea::make('intro')
                 ->label(__('velor-pages::resources.paragraphs.fields.intro'))
                 ->translatable()
                 ->sortable()
-                ->searchable(),
+                ->searchable()
+                ->rules([
+                    'nullable',
+                ]),
             RichText::make('content')
                 ->label(__('velor-pages::resources.paragraphs.fields.content'))
                 ->config('paragraph.content')
