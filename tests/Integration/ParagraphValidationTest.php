@@ -19,13 +19,14 @@ class ParagraphValidationTest extends AbstractIntegrationTestCase
 
         $validator = $this->app->make(ValidationFactory::class)->make(
             [
-                'is_active'  => false,
-                'name'       => 'Text paragraph',
-                'title'      => ['en' => null, 'nl' => null],
-                'intro'      => ['en' => null, 'nl' => null],
-                'content'    => ['en' => null, 'nl' => null],
-                'anchor'     => ['en' => null, 'nl' => null],
-                'sort_order' => 1,
+                'is_active'      => false,
+                'name'           => 'Text paragraph',
+                'title'          => ['en' => null, 'nl' => null],
+                'intro'          => ['en' => null, 'nl' => null],
+                'content'        => ['en' => null, 'nl' => null],
+                'image_position' => 'above',
+                'anchor'         => ['en' => null, 'nl' => null],
+                'sort_order'     => 1,
             ],
             $rules,
         );
@@ -34,5 +35,29 @@ class ParagraphValidationTest extends AbstractIntegrationTestCase
             $validator->fails(),
             $validator->errors()->toJson(),
         );
+    }
+
+    public function test_image_position_must_be_supported(): void
+    {
+        $rules = $this->app
+            ->make(ResourceValidationRulesFactoryInterface::class)
+            ->make($this->app->make(ParagraphResource::class));
+
+        $validator = $this->app->make(ValidationFactory::class)->make(
+            [
+                'is_active'      => true,
+                'name'           => 'Text paragraph',
+                'title'          => ['en' => null, 'nl' => null],
+                'intro'          => ['en' => null, 'nl' => null],
+                'content'        => ['en' => null, 'nl' => null],
+                'image_position' => 'inside',
+                'anchor'         => ['en' => null, 'nl' => null],
+                'sort_order'     => 1,
+            ],
+            $rules,
+        );
+
+        $this->assertTrue($validator->fails());
+        $this->assertArrayHasKey('image_position', $validator->errors()->toArray());
     }
 }

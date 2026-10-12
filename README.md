@@ -61,7 +61,7 @@ composer config repositories.velor-cms-pages vcs https://github.com/patrickzuurb
 composer require patrickzuurbier/velor-cms-pages:^1.4
 ```
 
-This package requires Velor CMS `^1.12`.
+This package requires Velor CMS `^1.17`.
 
 For local path development inside the Velor CMS repository, temporarily point
 Composer to the package workspace and update the package from the app
@@ -182,7 +182,8 @@ The service provider registers the package Page and Paragraph resource classes
 through Velor CMS' `ResourceRegistryInterface`.
 
 The Paragraph resource uses Velor CMS' core `RichText` field for textual
-content.
+content and a separate core `ImageUpload` field for one optional contextual
+image. Its position can be set above, left, or right of the paragraph text.
 
 ## CMS Menu
 

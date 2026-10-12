@@ -6,6 +6,7 @@ namespace Velor\Pages\Database\Factories;
 
 use App\Concerns\Database\Factories\FakesTranslatables;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Velor\Pages\Enums\ParagraphImagePositionEnum;
 use Velor\Pages\Models\Paragraph;
 
 /**
@@ -23,12 +24,13 @@ class ParagraphFactory extends Factory
     public function definition(): array
     {
         return [
-            'name'      => $this->faker->word(),
-            'title'     => $this->fakeTranslations(fn () => $this->faker->sentence()),
-            'intro'     => $this->fakeTranslations(fn () => $this->faker->paragraph()),
-            'content'   => $this->fakeTranslations(fn () => $this->faker->paragraph()),
-            'anchor'    => $this->fakeTranslations(fn () => $this->faker->url()),
-            'is_active' => $this->faker->boolean(),
+            'name'           => $this->faker->word(),
+            'title'          => $this->fakeTranslations(fn () => $this->faker->sentence()),
+            'intro'          => $this->fakeTranslations(fn () => $this->faker->paragraph()),
+            'content'        => $this->fakeTranslations(fn () => $this->faker->paragraph()),
+            'image_position' => ParagraphImagePositionEnum::ABOVE,
+            'anchor'         => $this->fakeTranslations(fn () => $this->faker->url()),
+            'is_active'      => $this->faker->boolean(),
         ];
     }
 }

@@ -8,14 +8,18 @@ use Velor\Pages\Models\Paragraph;
 use App\Resources\AbstractResource;
 use App\Resources\Fields\Checkbox;
 use App\Resources\Fields\Field;
+use App\Resources\Fields\ImageUpload;
 use App\Resources\Fields\Order;
 use App\Resources\Fields\RichText;
+use App\Resources\Fields\Select;
 use App\Resources\Fields\Text;
 use App\Resources\Fields\Textarea;
 use App\Resources\Tabs\ResourceTab;
 use App\Resources\Validation\UniqueTranslation;
 use Illuminate\Contracts\Routing\UrlGenerator;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules\Enum;
+use Velor\Pages\Enums\ParagraphImagePositionEnum;
 
 class ParagraphResource extends AbstractResource
 {
@@ -74,6 +78,21 @@ class ParagraphResource extends AbstractResource
                 ->searchable()
                 ->rules([
                     'nullable',
+                ]),
+            ImageUpload::make('image')
+                ->label(__('velor-pages::resources.paragraphs.fields.image'))
+                ->onlyOnForms(),
+            Select::make('image_position')
+                ->label(__('velor-pages::resources.paragraphs.fields.image_position'))
+                ->options([
+                    ParagraphImagePositionEnum::ABOVE->value => __('velor-pages::resources.paragraphs.image_positions.above'),
+                    ParagraphImagePositionEnum::LEFT->value  => __('velor-pages::resources.paragraphs.image_positions.left'),
+                    ParagraphImagePositionEnum::RIGHT->value => __('velor-pages::resources.paragraphs.image_positions.right'),
+                ])
+                ->default(ParagraphImagePositionEnum::ABOVE->value)
+                ->rules([
+                    'required',
+                    new Enum(ParagraphImagePositionEnum::class),
                 ]),
             Text::make('anchor')
                 ->label(__('velor-pages::resources.paragraphs.fields.anchor'))

@@ -14,11 +14,13 @@ use Velor\Pages\Resources\ParagraphResource;
 use Velor\Pages\Http\Requests\ParagraphRequest;
 use Velor\Pages\Repositories\Contracts\ParagraphRepositoryInterface;
 use App\Services\Resources\Contracts\ResourceIndexQueryInterface;
+use App\Services\Images\Contracts\ImageUploadServiceInterface;
 
 class ParagraphController extends Controller
 {
     public function __construct(
         protected ResourceIndexQueryInterface $resourceIndexQuery,
+        protected ImageUploadServiceInterface $imageUploadService,
         protected ParagraphResource $paragraphResource,
         protected ParagraphRepositoryInterface $paragraphRepository,
     ) {
@@ -49,7 +51,11 @@ class ParagraphController extends Controller
 
     public function store(ParagraphRequest $request, Page $page): RedirectResponse
     {
-        $paragraph = $this->paragraphRepository->createForPage($page, $request->validated());
+        $paragraph = $this->imageUploadService->storeResourceUploads(
+            $this->paragraphResource,
+            $request->validated(),
+            fn (array $attributes): Paragraph => $this->paragraphRepository->createForPage($page, $attributes),
+        );
 
         return redirect()
             ->route('pages.paragraphs.show', ['page' => $page->getKey(), 'paragraph' => $paragraph->getKey()])
@@ -72,7 +78,11 @@ class ParagraphController extends Controller
 
     public function update(ParagraphRequest $request, Page $page, Paragraph $paragraph): RedirectResponse
     {
-        $this->paragraphRepository->update($paragraph, $request->validated());
+        $this->imageUploadService->storeResourceUploads(
+            $this->paragraphResource,
+            $request->validated(),
+            fn (array $attributes): Paragraph => $this->paragraphRepository->update($paragraph, $attributes),
+        );
 
         return redirect()
             ->route('pages.paragraphs.show', ['page' => $page->getKey(), 'paragraph' => $paragraph->getKey()])
@@ -81,7 +91,12 @@ class ParagraphController extends Controller
 
     public function destroy(Page $page, Paragraph $paragraph): RedirectResponse
     {
-        $this->paragraphRepository->delete($paragraph);
+        $this->imageUploadService->deleteResourceWithUsages(
+            $paragraph,
+            function () use ($paragraph): void {
+                $this->paragraphRepository->delete($paragraph);
+            },
+        );
 
         return redirect()
             ->route('pages.paragraphs.index', ['page' => $page->getKey()])

@@ -31,10 +31,17 @@ return [
             'active'     => 'Active',
             'anchor'     => 'Anchor',
             'content'    => 'Content',
+            'image'      => 'Image',
+            'image_position' => 'Image position',
             'intro'      => 'Intro',
             'name'       => 'Name',
             'sort_order' => 'Order',
             'title'      => 'Title',
+        ],
+        'image_positions' => [
+            'above' => 'Above the text',
+            'left'  => 'Left of the text',
+            'right' => 'Right of the text',
         ],
         'tabs' => [
             'page' => 'Page',

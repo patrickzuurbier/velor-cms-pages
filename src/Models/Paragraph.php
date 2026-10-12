@@ -19,8 +19,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Velor\Pages\Database\Factories\ParagraphFactory;
+use Velor\Pages\Enums\ParagraphImagePositionEnum;
 
 /**
+ * @property ParagraphImagePositionEnum $image_position
  * @mixin \Eloquent
  */
 class Paragraph extends AbstractModel implements RowOrderableInterface, TranslatableInterface
@@ -67,6 +69,7 @@ class Paragraph extends AbstractModel implements RowOrderableInterface, Translat
         'title',
         'intro',
         'content',
+        'image_position',
         'anchor',
         'is_active',
         'sort_order',
@@ -85,6 +88,7 @@ class Paragraph extends AbstractModel implements RowOrderableInterface, Translat
         'title',
         'intro',
         'content',
+        'image_position',
         'anchor',
         'is_active',
         'sort_order',
@@ -102,15 +106,16 @@ class Paragraph extends AbstractModel implements RowOrderableInterface, Translat
     protected function casts(): array
     {
         return [
-            'is_active'  => 'boolean',
-            'name'       => 'string',
-            'title'      => Translatable::class,
-            'intro'      => Translatable::class,
-            'content'    => Translatable::class,
-            'anchor'     => Translatable::class,
-            'sort_order' => 'integer',
-            'created_at' => 'datetime',
-            'updated_at' => 'datetime',
+            'is_active'      => 'boolean',
+            'name'           => 'string',
+            'title'          => Translatable::class,
+            'intro'          => Translatable::class,
+            'content'        => Translatable::class,
+            'image_position' => ParagraphImagePositionEnum::class,
+            'anchor'         => Translatable::class,
+            'sort_order'     => 'integer',
+            'created_at'     => 'datetime',
+            'updated_at'     => 'datetime',
         ];
     }
 

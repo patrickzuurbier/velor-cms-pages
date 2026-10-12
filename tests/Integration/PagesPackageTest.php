@@ -8,6 +8,8 @@ use App\Services\Authorization\Contracts\PolicyRegistryInterface;
 use App\Services\CmsMenu\Contracts\CmsMenuItemRegistryInterface;
 use App\Services\CmsMenu\Data\CmsMenuItemData;
 use App\Services\Resources\Contracts\ResourceRegistryInterface;
+use App\Resources\Fields\ImageUpload;
+use App\Resources\Fields\Select;
 use Illuminate\Contracts\Translation\Translator;
 use Tests\Integration\AbstractIntegrationTestCase;
 use Velor\Pages\Models\Page;
@@ -16,6 +18,7 @@ use Velor\Pages\Policies\PagePolicy;
 use Velor\Pages\Policies\ParagraphPolicy;
 use Velor\Pages\Resources\PageResource;
 use Velor\Pages\Resources\ParagraphResource;
+use Velor\Pages\Enums\ParagraphImagePositionEnum;
 
 class PagesPackageTest extends AbstractIntegrationTestCase
 {
@@ -25,6 +28,20 @@ class PagesPackageTest extends AbstractIntegrationTestCase
 
         $this->assertInstanceOf(PageResource::class, $registry->resourceFor(Page::class));
         $this->assertInstanceOf(ParagraphResource::class, $registry->resourceFor(Paragraph::class));
+    }
+
+    public function test_paragraphs_use_a_separate_contextual_image_field(): void
+    {
+        $fields = collect($this->app->make(ParagraphResource::class)->fields());
+        $image = $fields->first(fn ($field): bool => $field->getAttribute() === 'image');
+        $position = $fields->first(fn ($field): bool => $field->getAttribute() === 'image_position');
+
+        $this->assertInstanceOf(ImageUpload::class, $image);
+        $this->assertTrue($image->collectsUsageContext());
+        $this->assertTrue($image->isVisibleOnForm());
+        $this->assertFalse($image->isVisibleOnShow());
+        $this->assertInstanceOf(Select::class, $position);
+        $this->assertSame(ParagraphImagePositionEnum::ABOVE->value, $position->getDefault());
     }
 
     public function test_it_registers_page_and_paragraph_policies_for_privileges(): void
@@ -73,10 +90,12 @@ class PagesPackageTest extends AbstractIntegrationTestCase
 
         $this->assertSame('Pages', $translator->get('velor-pages::resources.pages.plural'));
         $this->assertSame('Content', $translator->get('velor-pages::resources.paragraphs.fields.content'));
+        $this->assertSame('Image', $translator->get('velor-pages::resources.paragraphs.fields.image'));
 
         $translator->setLocale('nl');
 
         $this->assertSame('Pagina\'s', $translator->get('velor-pages::resources.pages.plural'));
         $this->assertSame('Content', $translator->get('velor-pages::resources.paragraphs.fields.content'));
+        $this->assertSame('Afbeelding', $translator->get('velor-pages::resources.paragraphs.fields.image'));
     }
 }
