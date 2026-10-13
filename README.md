@@ -58,7 +58,7 @@ Install the package in a Velor CMS application:
 
 ```bash
 composer config repositories.velor-cms-pages vcs https://github.com/patrickzuurbier/velor-cms-pages.git
-composer require patrickzuurbier/velor-cms-pages:^1.4
+composer require patrickzuurbier/velor-cms-pages:^1.5
 ```
 
 This package requires Velor CMS `^1.17`.
