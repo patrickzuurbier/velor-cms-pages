@@ -19,6 +19,7 @@ This package follows semantic versioning: `MAJOR.MINOR.PATCH`.
   images into the separate core `ImageUpload` field.
 - Raised the minimum Velor CMS version to `^1.17` for contextual image usages
   and transactional resource cleanup.
+- Raised the minimum PHP version to `8.4.1` to match Velor CMS core.
 
 ## [1.4.1] - 2026-09-29
 
