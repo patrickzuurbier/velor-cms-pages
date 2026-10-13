@@ -6,6 +6,12 @@ This package follows semantic versioning: `MAJOR.MINOR.PATCH`.
 
 ## [Unreleased]
 
+## [1.5.1] - 2026-10-13
+
+### Changed
+
+- Raised the minimum PHP version to `8.4.1` to match Velor CMS core.
+
 ## [1.5.0] - 2026-10-13
 
 ### Added
@@ -19,7 +25,6 @@ This package follows semantic versioning: `MAJOR.MINOR.PATCH`.
   images into the separate core `ImageUpload` field.
 - Raised the minimum Velor CMS version to `^1.17` for contextual image usages
   and transactional resource cleanup.
-- Raised the minimum PHP version to `8.4.1` to match Velor CMS core.
 
 ## [1.4.1] - 2026-09-29
 
@@ -124,7 +129,8 @@ This package follows semantic versioning: `MAJOR.MINOR.PATCH`.
 - Config override maps for project-owned resource and policy classes.
 - MIT license file for the package repository.
 
-[Unreleased]: https://github.com/patrickzuurbier/velor-cms-pages/compare/1.5.0...HEAD
+[Unreleased]: https://github.com/patrickzuurbier/velor-cms-pages/compare/1.5.1...HEAD
+[1.5.1]: https://github.com/patrickzuurbier/velor-cms-pages/compare/1.5.0...1.5.1
 [1.5.0]: https://github.com/patrickzuurbier/velor-cms-pages/compare/1.4.1...1.5.0
 [1.4.1]: https://github.com/patrickzuurbier/velor-cms-pages/compare/1.4.0...1.4.1
 [1.4.0]: https://github.com/patrickzuurbier/velor-cms-pages/compare/1.3.2...1.4.0
