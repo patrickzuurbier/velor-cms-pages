@@ -42,6 +42,28 @@ class PagesPackageTest extends AbstractIntegrationTestCase
         $this->assertFalse($image->isVisibleOnShow());
         $this->assertInstanceOf(Select::class, $position);
         $this->assertSame(ParagraphImagePositionEnum::ABOVE->value, $position->getDefault());
+        $this->assertSame(
+            [
+                'Above the text'    => ParagraphImagePositionEnum::ABOVE->value,
+                'Left of the text'  => ParagraphImagePositionEnum::LEFT->value,
+                'Right of the text' => ParagraphImagePositionEnum::RIGHT->value,
+            ],
+            $position->getOptions(),
+        );
+    }
+
+    public function test_paragraph_image_position_enum_translates_its_visible_values(): void
+    {
+        $this->app->setLocale('nl');
+
+        $this->assertSame(
+            [
+                'Boven de tekst'      => ParagraphImagePositionEnum::ABOVE->value,
+                'Links van de tekst'  => ParagraphImagePositionEnum::LEFT->value,
+                'Rechts van de tekst' => ParagraphImagePositionEnum::RIGHT->value,
+            ],
+            ParagraphImagePositionEnum::selectList(),
+        );
     }
 
     public function test_it_registers_page_and_paragraph_policies_for_privileges(): void

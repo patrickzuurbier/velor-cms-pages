@@ -84,11 +84,7 @@ class ParagraphResource extends AbstractResource
                 ->onlyOnForms(),
             Select::make('image_position')
                 ->label(__('velor-pages::resources.paragraphs.fields.image_position'))
-                ->options([
-                    ParagraphImagePositionEnum::ABOVE->value => __('velor-pages::resources.paragraphs.image_positions.above'),
-                    ParagraphImagePositionEnum::LEFT->value  => __('velor-pages::resources.paragraphs.image_positions.left'),
-                    ParagraphImagePositionEnum::RIGHT->value => __('velor-pages::resources.paragraphs.image_positions.right'),
-                ])
+                ->options(ParagraphImagePositionEnum::class)
                 ->default(ParagraphImagePositionEnum::ABOVE->value)
                 ->rules([
                     'required',

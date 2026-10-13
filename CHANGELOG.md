@@ -6,6 +6,18 @@ This package follows semantic versioning: `MAJOR.MINOR.PATCH`.
 
 ## [Unreleased]
 
+## [1.5.2] - 2026-10-13
+
+### Fixed
+
+- Fixed paragraph image position selects posting translated labels instead of
+  the enum values accepted by validation by letting the enum own its translated
+  option labels.
+
+### Changed
+
+- Raised the minimum Velor CMS version to `^1.18` for locale-aware enum labels.
+
 ## [1.5.1] - 2026-10-13
 
 ### Changed
@@ -129,7 +141,8 @@ This package follows semantic versioning: `MAJOR.MINOR.PATCH`.
 - Config override maps for project-owned resource and policy classes.
 - MIT license file for the package repository.
 
-[Unreleased]: https://github.com/patrickzuurbier/velor-cms-pages/compare/1.5.1...HEAD
+[Unreleased]: https://github.com/patrickzuurbier/velor-cms-pages/compare/1.5.2...HEAD
+[1.5.2]: https://github.com/patrickzuurbier/velor-cms-pages/compare/1.5.1...1.5.2
 [1.5.1]: https://github.com/patrickzuurbier/velor-cms-pages/compare/1.5.0...1.5.1
 [1.5.0]: https://github.com/patrickzuurbier/velor-cms-pages/compare/1.4.1...1.5.0
 [1.4.1]: https://github.com/patrickzuurbier/velor-cms-pages/compare/1.4.0...1.4.1
