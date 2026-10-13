@@ -6,6 +6,18 @@ This package follows semantic versioning: `MAJOR.MINOR.PATCH`.
 
 ## [Unreleased]
 
+### Added
+
+- Added one optional contextual image to paragraphs with translated alternative
+  text, an optional translated caption, and above, left, or right positioning.
+
+### Changed
+
+- Changed paragraph rich text content to text-only HTML and moved paragraph
+  images into the separate core `ImageUpload` field.
+- Raised the minimum Velor CMS version to `^1.17` for contextual image usages
+  and transactional resource cleanup.
+
 ## [1.4.1] - 2026-09-29
 
 ### Fixed
