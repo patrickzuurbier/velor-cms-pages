@@ -8,6 +8,7 @@ use Velor\Pages\Models\Paragraph;
 use App\Resources\AbstractResource;
 use App\Resources\Fields\Checkbox;
 use App\Resources\Fields\Field;
+use App\Resources\Fields\ImagePreview;
 use App\Resources\Fields\ImageUpload;
 use App\Resources\Fields\Order;
 use App\Resources\Fields\RichText;
@@ -16,7 +17,9 @@ use App\Resources\Fields\Text;
 use App\Resources\Fields\Textarea;
 use App\Resources\Tabs\ResourceTab;
 use App\Resources\Validation\UniqueTranslation;
+use App\Services\Images\Resolvers\ImageUsagePreviewResolver;
 use Illuminate\Contracts\Routing\UrlGenerator;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\Enum;
 use Velor\Pages\Enums\ParagraphImagePositionEnum;
@@ -28,6 +31,7 @@ class ParagraphResource extends AbstractResource
     public function __construct(
         protected Request $request,
         protected UrlGenerator $urlGenerator,
+        protected ImageUsagePreviewResolver $imageUsagePreviewResolver,
     ) {
     }
 
@@ -82,6 +86,12 @@ class ParagraphResource extends AbstractResource
             ImageUpload::make('image')
                 ->label(__('velor-pages::resources.paragraphs.fields.image'))
                 ->onlyOnForms(),
+            ImagePreview::make('image')
+                ->label(__('velor-pages::resources.paragraphs.fields.image'))
+                ->resolveValueUsing(
+                    fn (Model $model): mixed => $this->imageUsagePreviewResolver->resolve($model, 'image'),
+                )
+                ->onlyOnShow(),
             Select::make('image_position')
                 ->label(__('velor-pages::resources.paragraphs.fields.image_position'))
                 ->options(ParagraphImagePositionEnum::class)

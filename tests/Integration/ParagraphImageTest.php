@@ -6,6 +6,8 @@ namespace Velor\Pages\Tests\Integration;
 
 use App\Models\Image;
 use App\Models\ImageUsage;
+use App\Services\Images\Resolvers\ImageUsagePreviewResolver;
+use App\Data\View\ImagePreviewData;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Tests\Concerns\UsesAuthorization;
@@ -95,5 +97,44 @@ class ParagraphImageTest extends AbstractDatabaseIntegrationTestCase
         $this->assertDatabaseMissing('paragraphs', ['id' => $paragraph->getKey()]);
         $this->assertDatabaseMissing('image_usages', ['id' => $usage->getKey()]);
         $this->assertDatabaseHas('images', ['id' => $usage->image_id]);
+    }
+
+    public function test_it_resolves_the_paragraph_image_preview_when_an_image_is_present(): void
+    {
+        $paragraph = Paragraph::factory()->for(Page::factory())->create();
+        $image = Image::factory()->create([
+            'meta_data' => [
+                'original' => [
+                    'extension' => 'jpg',
+                ],
+                'formats' => [
+                    'preview' => [
+                        'extension' => 'jpg',
+                    ],
+                ],
+            ],
+        ]);
+        ImageUsage::factory()->for($image)->create([
+            'resource_type' => $paragraph->getTable(),
+            'resource_id'   => $paragraph->getKey(),
+            'field'         => 'image',
+        ]);
+
+        $preview = $this->app->make(ImageUsagePreviewResolver::class)->resolve($paragraph, 'image');
+
+        $this->assertInstanceOf(ImagePreviewData::class, $preview);
+        $this->assertStringContainsString(
+            'images/' . $image->getKey() . '/preview.jpg',
+            $preview->url,
+        );
+    }
+
+    public function test_it_leaves_the_paragraph_image_preview_empty_without_an_image(): void
+    {
+        $paragraph = Paragraph::factory()->for(Page::factory())->create();
+
+        $this->assertNull(
+            $this->app->make(ImageUsagePreviewResolver::class)->resolve($paragraph, 'image'),
+        );
     }
 }

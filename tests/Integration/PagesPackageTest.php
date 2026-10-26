@@ -9,6 +9,7 @@ use App\Services\CmsMenu\Contracts\CmsMenuItemRegistryInterface;
 use App\Services\CmsMenu\Data\CmsMenuItemData;
 use App\Services\Resources\Contracts\ResourceRegistryInterface;
 use App\Resources\Fields\ImageUpload;
+use App\Resources\Fields\ImagePreview;
 use App\Resources\Fields\Select;
 use Illuminate\Contracts\Translation\Translator;
 use Tests\Integration\AbstractIntegrationTestCase;
@@ -32,14 +33,21 @@ class PagesPackageTest extends AbstractIntegrationTestCase
 
     public function test_paragraphs_use_a_separate_contextual_image_field(): void
     {
+        $this->app->setLocale('en');
+
         $fields = collect($this->app->make(ParagraphResource::class)->fields());
-        $image = $fields->first(fn ($field): bool => $field->getAttribute() === 'image');
+        $image = $fields->first(fn ($field): bool => $field instanceof ImageUpload);
+        $imagePreview = $fields->first(fn ($field): bool => $field instanceof ImagePreview);
         $position = $fields->first(fn ($field): bool => $field->getAttribute() === 'image_position');
 
         $this->assertInstanceOf(ImageUpload::class, $image);
         $this->assertTrue($image->collectsUsageContext());
         $this->assertTrue($image->isVisibleOnForm());
         $this->assertFalse($image->isVisibleOnShow());
+        $this->assertInstanceOf(ImagePreview::class, $imagePreview);
+        $this->assertFalse($imagePreview->isVisibleOnForm());
+        $this->assertTrue($imagePreview->isVisibleOnShow());
+        $this->assertLessThan($fields->search($position), $fields->search($imagePreview));
         $this->assertInstanceOf(Select::class, $position);
         $this->assertSame(ParagraphImagePositionEnum::ABOVE->value, $position->getDefault());
         $this->assertSame(
