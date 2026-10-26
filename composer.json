@@ -11,6 +11,7 @@
     "autoload": {
         "psr-4": {
             "Velor\\Pages\\": "src/",
+            "Velor\\Pages\\Database\\Factories\\": "database/factories/",
             "Velor\\Pages\\Database\\Seeders\\": "database/seeders/"
         }
     },

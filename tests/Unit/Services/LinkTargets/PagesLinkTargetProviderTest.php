@@ -39,13 +39,15 @@ class PagesLinkTargetProviderTest extends TestCase
         ]);
         $page->setRelation('paragraphs', new EloquentCollection([$paragraph]));
 
-        $pageRepository = $this->createStub(PageRepositoryInterface::class);
+        $pageRepository = $this->createMock(PageRepositoryInterface::class);
         $pageRepository
+            ->expects($this->once())
             ->method('linkTargetPages')
             ->willReturn(new EloquentCollection([$page]));
 
-        $translator = $this->createStub(Translator::class);
+        $translator = $this->createMock(Translator::class);
         $translator
+            ->expects($this->exactly(2))
             ->method('get')
             ->willReturnCallback(
                 static fn (string $key): string => match ($key) {

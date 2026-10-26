@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Velor\Pages\Repositories;
 
+use App\Repositories\AbstractRepository;
 use Velor\Pages\Models\Page;
 use Velor\Pages\Models\Paragraph;
 use Velor\Pages\Repositories\Contracts\ParagraphRepositoryInterface;

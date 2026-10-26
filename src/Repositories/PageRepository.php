@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Velor\Pages\Repositories;
 
+use App\Repositories\AbstractRepository;
 use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Velor\Pages\Models\Page;
