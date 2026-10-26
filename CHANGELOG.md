@@ -6,6 +6,22 @@ This package follows semantic versioning: `MAJOR.MINOR.PATCH`.
 
 ## [Unreleased]
 
+## [1.6.0] - 2026-10-26
+
+### Added
+
+- Added the paragraph image preview to paragraph show views, positioned above
+  the configured image position and left empty when no image is associated.
+
+### Changed
+
+- Raised the minimum Velor CMS version to `^1.20` for reusable image usage
+  previews.
+- Reused the core repository foundation and moved package model factories to
+  the conventional `database/factories` directory with explicit Composer
+  autoloading.
+- Replaced the remaining unit-test stubs with collaborator mocks.
+
 ## [1.5.2] - 2026-10-13
 
 ### Fixed
@@ -141,7 +157,8 @@ This package follows semantic versioning: `MAJOR.MINOR.PATCH`.
 - Config override maps for project-owned resource and policy classes.
 - MIT license file for the package repository.
 
-[Unreleased]: https://github.com/patrickzuurbier/velor-cms-pages/compare/1.5.2...HEAD
+[Unreleased]: https://github.com/patrickzuurbier/velor-cms-pages/compare/1.6.0...HEAD
+[1.6.0]: https://github.com/patrickzuurbier/velor-cms-pages/compare/1.5.2...1.6.0
 [1.5.2]: https://github.com/patrickzuurbier/velor-cms-pages/compare/1.5.1...1.5.2
 [1.5.1]: https://github.com/patrickzuurbier/velor-cms-pages/compare/1.5.0...1.5.1
 [1.5.0]: https://github.com/patrickzuurbier/velor-cms-pages/compare/1.4.1...1.5.0

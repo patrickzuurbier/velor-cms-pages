@@ -58,10 +58,10 @@ Install the package in a Velor CMS application:
 
 ```bash
 composer config repositories.velor-cms-pages vcs https://github.com/patrickzuurbier/velor-cms-pages.git
-composer require patrickzuurbier/velor-cms-pages:^1.5
+composer require patrickzuurbier/velor-cms-pages:^1.6
 ```
 
-This package requires PHP `^8.4.1` and Velor CMS `^1.17`.
+This package requires PHP `^8.4.1` and Velor CMS `^1.20`.
 
 For local path development inside the Velor CMS repository, temporarily point
 Composer to the package workspace and update the package from the app
