@@ -11,7 +11,6 @@ routes.
 
 ## Contents
 
-- [Local Development](#local-development)
 - [Installation](#installation)
 - [Package Contents](#package-contents)
 - [Routes](#routes)
@@ -27,31 +26,6 @@ routes.
 - [License](#license)
 - [Development Notes](#development-notes)
 
-## Local Development
-
-The Velor CMS repository can temporarily load this package through a Composer
-path repository during package development:
-
-```json
-{
-    "type": "path",
-    "url": "packages/velor/pages",
-    "options": {
-        "symlink": true
-    }
-}
-```
-
-Install or update it from inside the app container:
-
-```bash
-docker compose exec app composer update patrickzuurbier/velor-cms-pages --with-dependencies
-```
-
-With `symlink` enabled, edits in this directory are used by the host app without
-copying files into `vendor`. Remove the path repository again before testing a
-real install from GitHub.
-
 ## Installation
 
 Install the package in a Velor CMS application:
@@ -62,24 +36,6 @@ composer require patrickzuurbier/velor-cms-pages:^1.6
 ```
 
 This package requires PHP `^8.4.1` and Velor CMS `^1.20`.
-
-For local path development inside the Velor CMS repository, temporarily point
-Composer to the package workspace and update the package from the app
-container:
-
-```bash
-composer config repositories.velor-cms-pages path packages/velor/pages
-docker compose exec app composer update patrickzuurbier/velor-cms-pages --with-dependencies
-```
-
-With a local path repository, Composer can symlink
-`vendor/patrickzuurbier/velor-cms-pages` to `packages/velor/pages`. Remove the
-local path repository again before testing a real install from GitHub:
-
-```bash
-composer config --unset repositories.velor-cms-pages
-composer config repositories.velor-cms-pages vcs https://github.com/patrickzuurbier/velor-cms-pages.git
-```
 
 The package service provider is auto-discovered by Laravel. It registers
 resources, policies, CMS menu items, CMS routes, translations, and
@@ -102,12 +58,6 @@ Then run the database migrations:
 
 ```bash
 php artisan migrate
-```
-
-For local development, use the Makefile from the Velor CMS host application:
-
-```bash
-make migrate
 ```
 
 Optionally run the package seeders for local data:
@@ -214,16 +164,9 @@ surface is intentionally designed.
 
 ## Testing
 
-Package integration is covered by the Velor CMS host application test suite:
-
-```bash
-make test
-```
-
-The package-level `tests` namespace is reserved for standalone package tests.
-Those tests should verify provider boot, resource/policy/CMS menu registration,
-routes, translations, factories, and migrations against a consuming Velor CMS
-test application.
+Package tests live in `tests` and verify provider boot,
+resource/policy/CMS-menu registration, routes, translations, factories, and
+migrations against a consuming Velor CMS test application.
 
 ## Uninstalling
 
