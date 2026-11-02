@@ -6,6 +6,11 @@ This package follows semantic versioning: `MAJOR.MINOR.PATCH`.
 
 ## [Unreleased]
 
+### Changed
+
+- Removed host-specific local development setup from the package documentation
+  and clarified the package's standalone integration test scope.
+
 ## [1.6.0] - 2026-10-26
 
 ### Added
