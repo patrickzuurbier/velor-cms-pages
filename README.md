@@ -35,7 +35,7 @@ composer config repositories.velor-cms-pages vcs https://github.com/patrickzuurb
 composer require patrickzuurbier/velor-cms-pages:^1.6
 ```
 
-This package requires PHP `^8.4.1` and Velor CMS `^1.20`.
+This package requires PHP `^8.4.1` and Velor CMS `^1.24`.
 
 The package service provider is auto-discovered by Laravel. It registers
 resources, policies, CMS menu items, CMS routes, translations, and
@@ -118,8 +118,10 @@ working while the package is developed through a Composer path repository.
 
 ## Controllers
 
-The package controllers render the generic Velor CMS index, show, and form
-views.
+The package controllers declare their resource classes through Velor CMS'
+`AbstractResourceController`, so the shared resource middleware authorizes
+standard actions through the registered Page and Paragraph policies before the
+controllers render the generic index, show, and form views.
 
 ## Form Requests
 

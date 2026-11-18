@@ -6,6 +6,16 @@ This package follows semantic versioning: `MAJOR.MINOR.PATCH`.
 
 ## [Unreleased]
 
+### Fixed
+
+- Enforced registered Page and Paragraph policy privileges on every resource
+  controller action through Velor CMS' central resource middleware.
+
+### Changed
+
+- Raised the minimum Velor CMS version to `^1.24` for central resource
+  authorization.
+
 ## [1.6.1] - 2026-11-02
 
 ### Changed

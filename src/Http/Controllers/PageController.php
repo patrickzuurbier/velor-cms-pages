@@ -7,15 +7,17 @@ namespace Velor\Pages\Http\Controllers;
 use Velor\Pages\Models\Page;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Velor\Pages\Resources\PageResource;
 use Velor\Pages\Http\Requests\PageRequest;
 use Velor\Pages\Repositories\Contracts\PageRepositoryInterface;
 use App\Services\Resources\Contracts\ResourceIndexQueryInterface;
+use App\Services\Resources\Http\Controllers\AbstractResourceController;
 
-class PageController extends Controller
+class PageController extends AbstractResourceController
 {
+    protected static string $resource = PageResource::class;
+
     public function __construct(
         protected ResourceIndexQueryInterface $resourceIndexQuery,
         protected PageResource $pageResource,
