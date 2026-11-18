@@ -8,16 +8,18 @@ use Velor\Pages\Models\Page;
 use Velor\Pages\Models\Paragraph;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\View\View;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use Velor\Pages\Resources\ParagraphResource;
 use Velor\Pages\Http\Requests\ParagraphRequest;
 use Velor\Pages\Repositories\Contracts\ParagraphRepositoryInterface;
 use App\Services\Resources\Contracts\ResourceIndexQueryInterface;
 use App\Services\Images\Contracts\ImageUploadServiceInterface;
+use App\Services\Resources\Http\Controllers\AbstractResourceController;
 
-class ParagraphController extends Controller
+class ParagraphController extends AbstractResourceController
 {
+    protected static string $resource = ParagraphResource::class;
+
     public function __construct(
         protected ResourceIndexQueryInterface $resourceIndexQuery,
         protected ImageUploadServiceInterface $imageUploadService,
