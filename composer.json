@@ -1,12 +1,12 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
     "name": "patrickzuurbier/velor-cms-pages",
-    "description": "Pages and paragraphs resource plugin for Velor CMS.",
+    "description": "Pages and paragraphs content-management package for Velor.",
     "type": "library",
     "license": "MIT",
     "require": {
         "php": "^8.4.1",
-        "velor/cms": "^1.24"
+        "velor/cms": "^1.26"
     },
     "autoload": {
         "psr-4": {

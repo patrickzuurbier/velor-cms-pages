@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Velor\Pages\Tests\Integration;
 
 use App\Services\Authorization\Contracts\PolicyRegistryInterface;
-use App\Services\CmsMenu\Contracts\CmsMenuItemRegistryInterface;
-use App\Services\CmsMenu\Data\CmsMenuItemData;
+use App\Services\VelorMenu\Contracts\VelorMenuItemRegistryInterface;
+use App\Services\VelorMenu\Data\VelorMenuItemData;
 use App\Services\Resources\Contracts\ResourceRegistryInterface;
 use App\Resources\Fields\ImageUpload;
 use App\Resources\Fields\ImagePreview;
@@ -82,18 +82,18 @@ class PagesPackageTest extends AbstractIntegrationTestCase
         $this->assertSame(ParagraphPolicy::class, $registry->privilegePolicies()[Paragraph::class]);
     }
 
-    public function test_it_registers_pages_cms_menu_item(): void
+    public function test_it_registers_pages_velor_menu_item(): void
     {
-        $registry = $this->app->make(CmsMenuItemRegistryInterface::class);
+        $registry = $this->app->make(VelorMenuItemRegistryInterface::class);
         $item = collect($registry->items())->firstWhere('routeName', 'pages.index');
 
-        $this->assertInstanceOf(CmsMenuItemData::class, $item);
+        $this->assertInstanceOf(VelorMenuItemData::class, $item);
         $this->assertSame(Page::class, $item->modelClass);
         $this->assertSame('velor-pages::resources.pages.plural', $item->label);
         $this->assertSame('bi-files', $item->icon);
     }
 
-    public function test_it_loads_page_and_paragraph_cms_routes(): void
+    public function test_it_loads_page_and_paragraph_velor_routes(): void
     {
         $this->app['router']->getRoutes()->refreshNameLookups();
 
@@ -106,8 +106,8 @@ class PagesPackageTest extends AbstractIntegrationTestCase
 
         $this->assertNotNull($pageRoute);
         $this->assertNotNull($paragraphRoute);
-        $this->assertSame('cms/pages', $pageRoute->uri());
-        $this->assertSame('cms/pages/{page}/paragraphs', $paragraphRoute->uri());
+        $this->assertSame('velor/pages', $pageRoute->uri());
+        $this->assertSame('velor/pages/{page}/paragraphs', $paragraphRoute->uri());
         $this->assertContains('web', $pageRoute->middleware());
         $this->assertContains('auth', $pageRoute->middleware());
     }

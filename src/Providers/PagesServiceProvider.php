@@ -6,7 +6,7 @@ namespace Velor\Pages\Providers;
 
 use Velor\Pages\Models\Page;
 use Velor\Pages\Models\Paragraph;
-use App\Services\CmsMenu\Data\CmsMenuItemData;
+use App\Services\VelorMenu\Data\VelorMenuItemData;
 use App\Services\LinkTargets\Contracts\LinkTargetRegistryInterface;
 use Illuminate\Support\ServiceProvider;
 use Velor\Pages\Policies\PagePolicy;
@@ -16,9 +16,9 @@ use Velor\Pages\Policies\ParagraphPolicy;
 use Velor\Pages\Resources\ParagraphResource;
 use Velor\Pages\Repositories\ParagraphRepository;
 use App\Services\Resources\Contracts\ResourceRegistryInterface;
-use App\Services\CmsRouting\Contracts\CmsRouteRegistrarInterface;
+use App\Services\VelorRouting\Contracts\VelorRouteRegistrarInterface;
 use App\Services\Authorization\Contracts\PolicyRegistryInterface;
-use App\Services\CmsMenu\Contracts\CmsMenuItemRegistryInterface;
+use App\Services\VelorMenu\Contracts\VelorMenuItemRegistryInterface;
 use Velor\Pages\Repositories\Contracts\PageRepositoryInterface;
 use Velor\Pages\Repositories\Contracts\ParagraphRepositoryInterface;
 use Velor\Pages\Services\LinkTargets\Providers\PagesLinkTargetProvider;
@@ -32,10 +32,10 @@ class PagesServiceProvider extends ServiceProvider
     }
 
     public function boot(
-        CmsRouteRegistrarInterface $cmsRoutes,
+        VelorRouteRegistrarInterface $velorRoutes,
         ResourceRegistryInterface $resources,
         PolicyRegistryInterface $policies,
-        CmsMenuItemRegistryInterface $cmsMenuItems,
+        VelorMenuItemRegistryInterface $velorMenuItems,
         LinkTargetRegistryInterface $linkTargets,
     ): void {
         $this->loadTranslationsFrom(__DIR__ . '/../../lang', 'velor-pages');
@@ -47,14 +47,14 @@ class PagesServiceProvider extends ServiceProvider
         $policies->register(Page::class, PagePolicy::class);
         $policies->register(Paragraph::class, ParagraphPolicy::class);
 
-        $cmsMenuItems->registerBefore(
+        $velorMenuItems->registerBefore(
             'images.index',
-            new CmsMenuItemData(Page::class, 'pages.index', 'velor-pages::resources.pages.plural', 'bi-files'),
+            new VelorMenuItemData(Page::class, 'pages.index', 'velor-pages::resources.pages.plural', 'bi-files'),
         );
 
         $linkTargets->register($this->app->make(PagesLinkTargetProvider::class));
 
-        $cmsRoutes->loadAuthenticated(__DIR__ . '/../../routes/cms.php');
+        $velorRoutes->loadAuthenticated(__DIR__ . '/../../routes/velor.php');
 
         $this->publishes([
             __DIR__ . '/../../database/migrations' => $this->app->databasePath('migrations'),

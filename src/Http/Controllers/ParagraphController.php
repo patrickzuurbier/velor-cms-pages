@@ -31,7 +31,7 @@ class ParagraphController extends AbstractResourceController
     public function index(Request $request, Page $page): View
     {
         return view(
-            'cms.layouts.index',
+            'velor.layouts.index',
             [
                 'pagination' => $this->resourceIndexQuery->paginate(
                     resource: $this->paragraphResource,
@@ -46,7 +46,7 @@ class ParagraphController extends AbstractResourceController
 
     public function create(Page $page): View
     {
-        return view('cms.layouts.form', [
+        return view('velor.layouts.form', [
             'resource' => $this->paragraphResource,
         ]);
     }
@@ -66,14 +66,14 @@ class ParagraphController extends AbstractResourceController
 
     public function show(Page $page, Paragraph $paragraph): View
     {
-        return view('cms.layouts.show', [
+        return view('velor.layouts.show', [
             'resource' => $this->paragraphResource,
         ]);
     }
 
     public function edit(Page $page, Paragraph $paragraph): View
     {
-        return view('cms.layouts.form', [
+        return view('velor.layouts.form', [
             'resource' => $this->paragraphResource,
         ]);
     }

@@ -1,12 +1,12 @@
 # Velor CMS Pages
 
-Pages is a first-party resource plugin for Velor CMS. It owns the page and
-paragraph vertical slice and uses Velor CMS extension points for resources,
+Pages is a first-party content-management package for Velor. It owns the page
+and paragraph vertical slice and uses Velor extension points for resources,
 routes, menu items, policies, privileges, translations, migrations, and tests.
 
 This package owns Page and Paragraph models, factories, migrations, seeders,
 controllers, form requests, resource classes, policies, resource translations,
-resource registration, policy registration, CMS menu registration, and CMS
+resource registration, policy registration, Velor menu registration, and Velor
 routes.
 
 ## Contents
@@ -18,7 +18,7 @@ routes.
 - [Controllers](#controllers)
 - [Form Requests](#form-requests)
 - [Resources](#resources)
-- [CMS Menu](#cms-menu)
+- [Velor Menu](#velor-menu)
 - [Policies](#policies)
 - [Publishing](#publishing)
 - [Testing](#testing)
@@ -28,22 +28,22 @@ routes.
 
 ## Installation
 
-Install the package in a Velor CMS application:
+Install the package in a Velor application:
 
 ```bash
 composer config repositories.velor-cms-pages vcs https://github.com/patrickzuurbier/velor-cms-pages.git
-composer require patrickzuurbier/velor-cms-pages:^1.7
+composer require patrickzuurbier/velor-cms-pages:^1.8
 ```
 
-This package requires PHP `^8.4.1` and Velor CMS `^1.24`.
+This package requires PHP `^8.4.1` and Velor `^1.26`.
 
 The package service provider is auto-discovered by Laravel. It registers
-resources, policies, CMS menu items, CMS routes, translations, and
+resources, policies, Velor menu items, Velor routes, translations, and
 migrations.
 
 ## Link Targets
 
-The package exposes active pages and active paragraph anchors to Velor CMS Link
+The package exposes active pages and active paragraph anchors to Velor Link
 fields. Page targets use `/{slug}` and paragraph targets use
 `/{slug}#{anchor}` for each available translation. Selecting a target stores
 only those URLs in the resource using the Link field.
@@ -89,21 +89,21 @@ database/migrations
 database/seeders
 lang/en/resources.php
 lang/nl/resources.php
-routes/cms.php
+routes/velor.php
 tests
 ```
 
 ## Routes
 
-CMS routes live in `routes/cms.php`. The service provider loads that file
-through Velor CMS' route registrar, so this package does not define the global
-`cms` prefix or CMS middleware itself. The route names and URLs remain the same
+Velor routes live in `routes/velor.php`. The service provider loads that file
+through Velor's route registrar, so this package does not define the global
+`velor` prefix or middleware itself. The route names and URLs remain the same
 as the original host application routes.
 
-Paragraphs use Velor CMS core row ordering:
+Paragraphs use Velor core row ordering:
 
 ```text
-POST /cms/resource-row-order/paragraphs
+POST /velor/resource-row-order/paragraphs
 ```
 
 The package marks the Paragraph model as row-orderable and scopes ordering by
@@ -112,42 +112,42 @@ endpoint is protected by the Paragraph policy's `reorder` ability.
 
 ## Models And Factories
 
-The package models extend Velor CMS' `AbstractModel` and explicitly resolve
+The package models extend Velor's `AbstractModel` and explicitly resolve
 their package factories, so `Page::factory()` and `Paragraph::factory()` keep
 working while the package is developed through a Composer path repository.
 
 ## Controllers
 
-The package controllers declare their resource classes through Velor CMS'
+The package controllers declare their resource classes through Velor's
 `AbstractResourceController`, so the shared resource middleware authorizes
 standard actions through the registered Page and Paragraph policies before the
 controllers render the generic index, show, and form views.
 
 ## Form Requests
 
-The package form requests use Velor CMS' resource validation factories so
+The package form requests use Velor's resource validation factories so
 validation remains defined by the package resources.
 
 ## Resources
 
 The service provider registers the package Page and Paragraph resource classes
-through Velor CMS' `ResourceRegistryInterface`.
+through Velor's `ResourceRegistryInterface`.
 
-The Paragraph resource uses Velor CMS' core `RichText` field for textual
+The Paragraph resource uses Velor's core `RichText` field for textual
 content and a separate core `ImageUpload` field for one optional contextual
 image. Its position can be set above, left, or right of the paragraph text.
 
-## CMS Menu
+## Velor Menu
 
-The package registers its menu item through Velor CMS'
-`CmsMenuItemRegistryInterface`. It anchors the Pages item before the Images
+The package registers its menu item through Velor's
+`VelorMenuItemRegistryInterface`. It anchors the Pages item before the Images
 route, so the package owns its menu entry while the host menu remains
 predictable.
 
 ## Policies
 
 The service provider registers the package Page and Paragraph policies through
-Velor CMS' `PolicyRegistryInterface`. Registered policies are also exposed to
+Velor's `PolicyRegistryInterface`. Registered policies are also exposed to
 role privileges by default.
 
 ## Publishing
@@ -167,8 +167,8 @@ surface is intentionally designed.
 ## Testing
 
 Package tests live in `tests` and verify provider boot,
-resource/policy/CMS-menu registration, routes, translations, factories, and
-migrations against a consuming Velor CMS test application.
+resource, policy, and Velor-menu registration, routes, translations, factories,
+and migrations against a consuming Velor test application.
 
 ## Uninstalling
 
@@ -178,8 +178,8 @@ The package can be removed from a consuming application with Composer:
 composer remove patrickzuurbier/velor-cms-pages
 ```
 
-Velor CMS core should continue to boot without this package. Package-owned CMS
-routes, resources, policies, CMS menu items, translations, and loaded migrations
+Velor core should continue to boot without this package. Package-owned routes,
+resources, policies, Velor menu items, translations, and loaded migrations
 disappear with the package. Existing database tables and published files are
 project data and are not deleted automatically by Composer.
 
@@ -193,5 +193,5 @@ Pages and paragraphs belong together. The package owns their models, factories,
 migrations, seeders, relationship, tabs, ordering, translated fields, slugs,
 anchors, and rich text configuration.
 
-Velor CMS core must not contain page-specific route, menu, or field logic after
+Velor core must not contain page-specific route, menu, or field logic after
 this package is installed.

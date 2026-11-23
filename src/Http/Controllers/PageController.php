@@ -28,7 +28,7 @@ class PageController extends AbstractResourceController
     public function index(Request $request): View
     {
         return view(
-            'cms.layouts.index',
+            'velor.layouts.index',
             [
                 'pagination' => $this->resourceIndexQuery->paginate(
                     resource: $this->pageResource,
@@ -41,7 +41,7 @@ class PageController extends AbstractResourceController
 
     public function create(): View
     {
-        return view('cms.layouts.form', [
+        return view('velor.layouts.form', [
             'resource' => $this->pageResource,
         ]);
     }
@@ -57,14 +57,14 @@ class PageController extends AbstractResourceController
 
     public function show(Page $page): View
     {
-        return view('cms.layouts.show', [
+        return view('velor.layouts.show', [
             'resource' => $this->pageResource,
         ]);
     }
 
     public function edit(Page $page): View
     {
-        return view('cms.layouts.form', [
+        return view('velor.layouts.form', [
             'resource' => $this->pageResource,
         ]);
     }
