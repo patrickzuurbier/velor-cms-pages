@@ -6,6 +6,8 @@ This package follows semantic versioning: `MAJOR.MINOR.PATCH`.
 
 ## [Unreleased]
 
+## [1.8.0] - 2026-11-24
+
 ### Changed
 
 - Migrated menu registration, authenticated routes, shared layouts, package
@@ -182,7 +184,8 @@ This package follows semantic versioning: `MAJOR.MINOR.PATCH`.
 - Config override maps for project-owned resource and policy classes.
 - MIT license file for the package repository.
 
-[Unreleased]: https://github.com/patrickzuurbier/velor-cms-pages/compare/1.7.0...HEAD
+[Unreleased]: https://github.com/patrickzuurbier/velor-cms-pages/compare/1.8.0...HEAD
+[1.8.0]: https://github.com/patrickzuurbier/velor-cms-pages/compare/1.7.0...1.8.0
 [1.7.0]: https://github.com/patrickzuurbier/velor-cms-pages/compare/1.6.1...1.7.0
 [1.6.1]: https://github.com/patrickzuurbier/velor-cms-pages/compare/1.6.0...1.6.1
 [1.6.0]: https://github.com/patrickzuurbier/velor-cms-pages/compare/1.5.2...1.6.0
