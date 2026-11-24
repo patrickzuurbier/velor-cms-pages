@@ -1,4 +1,7 @@
-# Velor CMS Pages
+<div align="center">
+    <img src="https://velorstack.nl/images/velor-logo.png" alt="Velor" width="88">
+    <h1>Velor CMS Pages</h1>
+</div>
 
 Pages is a first-party content-management package for Velor. It owns the page
 and paragraph vertical slice and uses Velor extension points for resources,
@@ -31,7 +34,6 @@ routes.
 Install the package in a Velor application:
 
 ```bash
-composer config repositories.velor-cms-pages vcs https://github.com/patrickzuurbier/velor-cms-pages.git
 composer require patrickzuurbier/velor-cms-pages:^1.8
 ```
 
@@ -140,9 +142,9 @@ image. Its position can be set above, left, or right of the paragraph text.
 ## Velor Menu
 
 The package registers its menu item through Velor's
-`VelorMenuItemRegistryInterface`. It anchors the Pages item before the Images
-route, so the package owns its menu entry while the host menu remains
-predictable.
+`VelorMenuItemRegistryInterface`. Newly registered package items are appended
+by default; the consuming application determines their fixed grouping and
+position through `velor-menu.php`.
 
 ## Policies
 

@@ -47,8 +47,7 @@ class PagesServiceProvider extends ServiceProvider
         $policies->register(Page::class, PagePolicy::class);
         $policies->register(Paragraph::class, ParagraphPolicy::class);
 
-        $velorMenuItems->registerBefore(
-            'images.index',
+        $velorMenuItems->register(
             new VelorMenuItemData(Page::class, 'pages.index', 'velor-pages::resources.pages.plural', 'bi-files'),
         );
 

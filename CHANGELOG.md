@@ -6,6 +6,13 @@ This package follows semantic versioning: `MAJOR.MINOR.PATCH`.
 
 ## [Unreleased]
 
+### Changed
+
+- Removed package-specific Composer repository setup from the standard
+  installation instructions and added recognizable Velor branding.
+- Changed Pages menu registration to append by default so `velor-menu.php`
+  exclusively determines its fixed grouping and position.
+
 ## [1.8.0] - 2026-11-24
 
 ### Changed
